@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Facebook, Instagram, Download } from 'lucide-react';
+import { ChevronDown, Mail, MapPin, Github, Linkedin, Facebook, Instagram, Download } from 'lucide-react';
 import Avatar3D from './Avatar3D';
 
 const Hero: React.FC = () => {
@@ -9,8 +9,6 @@ const Hero: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   const scrollToNext = () => {
