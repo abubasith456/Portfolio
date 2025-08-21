@@ -86,50 +86,10 @@ const AvatarModel: React.FC = () => {
 
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      {/* 3D Avatar Model */}
-      <group ref={avatarRef} position={[0, 0, 0]} scale={[1, 1, 1]}>
+      {/* 3D Avatar Model - Zoomed */}
+      <group ref={avatarRef} position={[0, 0, 0]} scale={[1.5, 1.5, 1.5]}>
         <primitive object={scene} />
       </group>
-      
-      {/* Floating particles around avatar */}
-      {Array.from({ length: 15 }).map((_, i) => (
-        <group key={i} position={[
-          (Math.random() - 0.5) * 4,
-          (Math.random() - 0.5) * 4,
-          (Math.random() - 0.5) * 2
-        ]}>
-          <mesh>
-            <sphereGeometry args={[0.02, 8, 8]} />
-            <meshStandardMaterial 
-              color="#06b6d4" 
-              emissive="#06b6d4" 
-              emissiveIntensity={0.6}
-              transparent
-              opacity={0.5}
-            />
-          </mesh>
-        </group>
-      ))}
-      
-      {/* Click effect particles */}
-      {isClicked && Array.from({ length: 12 }).map((_, i) => (
-        <group key={`click-${i}`} position={[0, 0, 0]}>
-          <mesh position={[
-            (Math.random() - 0.5) * 1.5,
-            (Math.random() - 0.5) * 1.5,
-            (Math.random() - 0.5) * 0.5
-          ]}>
-            <sphereGeometry args={[0.03, 8, 8]} />
-            <meshStandardMaterial 
-              color="#fbbf24" 
-              emissive="#fbbf24" 
-              emissiveIntensity={1}
-              transparent
-              opacity={0.8}
-            />
-          </mesh>
-        </group>
-      ))}
     </group>
   );
 };

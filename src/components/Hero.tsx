@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Facebook, Instagram, Download } from 'lucide-react';
 import Avatar3D from './Avatar3D';
 
 const Hero: React.FC = () => {
+  // Ensure page starts at top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -17,7 +21,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       <div className="container-custom section-padding relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Content */}
