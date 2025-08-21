@@ -56,10 +56,10 @@ const About: React.FC = () => {
       <div className="container-custom relative z-10">
         <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={containerVariants} className="space-y-20">
           <motion.div variants={itemVariants} className="text-center space-y-6">
-            <h2 className="text-5xl md:text-7xl font-bold">
-              <span className="gradient-text">About</span>
+            <h2 className="text-5xl md:text-7xl font-bold modern-text">
+              <span className="gradient-text-modern text-glow">About</span>
               <br />
-              <span className="text-dynamic">Me</span>
+              <span className="text-dynamic text-shadow-modern">Me</span>
             </h2>
             <p className="text-xl text-dynamic-secondary max-w-3xl mx-auto leading-relaxed">
               Passionate software engineer with 3.5+ years of experience crafting innovative solutions
@@ -68,8 +68,8 @@ const About: React.FC = () => {
 
           <motion.div variants={itemVariants} className="space-y-8">
             <div className="text-center">
-              <h3 className="text-3xl font-bold text-dynamic mb-4">Technical Expertise</h3>
-              <p className="text-dynamic-secondary">Technologies I work with</p>
+              <h3 className="text-3xl font-bold text-dynamic mb-4 modern-text">Technical Expertise</h3>
+              <p className="text-dynamic-secondary modern-text">Technologies I work with</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {skills.map((skill) => (

@@ -71,10 +71,10 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="gradient-text">Get In</span>
+          <h2 className="text-5xl md:text-7xl font-bold mb-6 modern-text">
+            <span className="gradient-text-modern text-glow">Get In</span>
             <br />
-            <span className="text-dynamic">Touch</span>
+            <span className="text-dynamic text-shadow-modern">Touch</span>
           </h2>
           <p className="text-xl text-dynamic max-w-2xl mx-auto">
             Ready to collaborate? Let's discuss your next project and bring your ideas to life.

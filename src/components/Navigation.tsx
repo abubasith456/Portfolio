@@ -33,7 +33,7 @@ const Navigation: React.FC<NavigationProps> = ({ isDark, toggleTheme }) => {
     <motion.nav initial={{ y: -100 }} animate={{ y: 0 }} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass backdrop-blur-md' : 'bg-transparent'}`}>
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <motion.div whileHover={{ scale: 1.05 }} className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold gradient-text cursor-pointer ml-2 sm:ml-0" onClick={() => scrollToSection('#home')}>
+          <motion.div whileHover={{ scale: 1.05 }} className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold gradient-text-modern cursor-pointer ml-2 sm:ml-0 modern-text" onClick={() => scrollToSection('#home')}>
             Mohamed's Portfolio
           </motion.div>
 

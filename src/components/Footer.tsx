@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
               viewport={{ once: true }}
               className="space-y-4"
             >
-              <h3 className="text-2xl font-bold gradient-text">Mohamed Abu Basith S</h3>
+              <h3 className="text-2xl font-bold gradient-text-modern modern-text">Mohamed Abu Basith S</h3>
               <p className="text-dynamic leading-relaxed">
                 Software Engineer passionate about creating innovative digital solutions 
                 with cutting-edge technologies.

@@ -35,30 +35,35 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="space-y-6"
             >
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-accent-primary rounded-full animate-pulse"></div>
-                <span className="text-dynamic-secondary font-mono text-sm tracking-wider animate-fade-in">SOFTWARE ENGINEER</span>
-              </div>
+              <motion.div 
+                className="flex items-center space-x-3"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+              >
+                <div className="w-3 h-3 bg-gradient-to-r from-accent-primary to-accent-secondary rounded-full animate-pulse shadow-lg"></div>
+                <span className="text-dynamic-secondary font-mono text-sm tracking-wider modern-text">SOFTWARE ENGINEER</span>
+              </motion.div>
               
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                <motion.span 
-                  className="gradient-text"
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7, duration: 0.8 }}
-                >
-                  Mohamed
-                </motion.span>
-                <br />
-                <motion.span 
-                  className="text-dynamic"
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9, duration: 0.8 }}
-                >
-                  Abu Basith S
-                </motion.span>
-              </h1>
+                              <h1 className="text-5xl md:text-7xl font-bold leading-tight modern-text">
+                  <motion.span 
+                    className="gradient-text-modern text-glow"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7, duration: 0.8 }}
+                  >
+                    Mohamed
+                  </motion.span>
+                  <br />
+                  <motion.span 
+                    className="text-dynamic text-shadow-modern"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.9, duration: 0.8 }}
+                  >
+                    Abu Basith S
+                  </motion.span>
+                </h1>
               
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
