@@ -59,11 +59,6 @@ const About: React.FC = () => {
       <div className="container-custom relative z-10">
         <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={containerVariants} className="space-y-20">
           <motion.div variants={itemVariants} className="text-center space-y-6">
-            <div className="flex items-center justify-center space-x-3 mb-4">
-              <div className="w-1 h-8 gradient-bg rounded-full"></div>
-              <span className="text-dynamic-secondary font-mono text-sm tracking-wider">ABOUT ME</span>
-              <div className="w-1 h-8 gradient-bg rounded-full"></div>
-            </div>
             <h2 className="text-5xl md:text-7xl font-bold">
               <span className="gradient-text">About</span>
               <br />
