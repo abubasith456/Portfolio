@@ -43,6 +43,12 @@ const App: React.FC = () => {
     setIsDark(!isDark);
   };
 
+  // Fallback theme toggle for debugging
+  const fallbackToggle = () => {
+    console.log('Fallback toggle clicked');
+    setIsDark(!isDark);
+  };
+
   return (
     <div className={`min-h-screen ${isDark ? 'dark' : 'light'}`}>
       {/* Developer-themed animated background */}
@@ -50,6 +56,15 @@ const App: React.FC = () => {
       
       {/* Theme toggle */}
       <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
+      
+      {/* Fallback theme toggle for debugging */}
+      <button
+        onClick={fallbackToggle}
+        className="fixed top-4 left-4 z-[9999] bg-red-500 text-white px-3 py-1 rounded text-sm"
+        style={{ touchAction: 'manipulation' }}
+      >
+        {isDark ? 'Light' : 'Dark'}
+      </button>
       
       {/* Navigation */}
       <Navigation />
