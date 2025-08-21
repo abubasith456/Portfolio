@@ -23,6 +23,7 @@ const AvatarModel: React.FC = () => {
   useEffect(() => {
     if (avatarTexture) {
       avatarTexture.flipY = false; // Prevent texture flipping
+      avatarTexture.rotation = Math.PI; // Rotate texture 180 degrees
       avatarTexture.needsUpdate = true;
     }
   }, [avatarTexture]);
@@ -102,20 +103,7 @@ const AvatarModel: React.FC = () => {
         />
       </Plane>
       
-      {/* Glow effect behind avatar */}
-      <Plane 
-        args={[2.5, 2.5]} 
-        position={[0, 0, -0.1]}
-      >
-        <meshStandardMaterial 
-          color="#3b82f6" 
-          transparent 
-          opacity={0.3} 
-          emissive="#3b82f6" 
-          emissiveIntensity={0.5}
-          side={THREE.DoubleSide}
-        />
-      </Plane>
+
       
       {/* Floating particles around avatar */}
       {Array.from({ length: 20 }).map((_, i) => (
@@ -160,20 +148,7 @@ const AvatarModel: React.FC = () => {
         </group>
       ))}
       
-      {/* Energy ring effect */}
-      <Plane 
-        args={[3, 3]} 
-        position={[0, 0, -0.2]}
-      >
-        <meshStandardMaterial 
-          color="#06b6d4" 
-          transparent 
-          opacity={0.1} 
-          emissive="#06b6d4" 
-          emissiveIntensity={0.3}
-          side={THREE.DoubleSide}
-        />
-      </Plane>
+
     </group>
   );
 };
