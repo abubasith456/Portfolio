@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, GraduationCap, Award, Heart, Zap, Rocket, Globe, Smartphone, Database, GitBranch, Brain, Cpu } from 'lucide-react';
+import { Code, GraduationCap, Award, Heart, Rocket, Globe, Smartphone, Database, GitBranch, Brain, Cpu } from 'lucide-react';
 
 const About: React.FC = () => {
   const [ref, inView] = useInView({
@@ -124,25 +124,21 @@ const About: React.FC = () => {
               <p className="text-dynamic-secondary">Technologies I work with</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-              {skills.map((skill, index) => (
+              {skills.map((skill) => (
                 <motion.div
                   key={skill.name}
                   variants={cardVariants}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    y: -10,
-                    transition: { duration: 0.2 }
-                  }}
+                  whileHover={{ scale: 1.05, y: -10, transition: { duration: 0.2 } }}
                   className="group relative"
                 >
-                  <div 
+                  <div
                     className="glass rounded-2xl p-6 text-center card-hover"
-                    style={{ 
+                    style={{
                       background: `linear-gradient(135deg, ${skill.color}20, ${skill.color}10)`,
                       borderColor: `${skill.color}30`
                     }}
                   >
-                    <div className="flex justify-center mb-3 text-on-card group-hover:text-accent-primary transition-colors">
+                    <div className="flex justify-center mb-3 transition-colors" style={{ color: 'var(--skill-icon-color)' }}>
                       {skill.icon}
                     </div>
                     <h4 className="font-semibold text-on-card group-hover:text-accent-primary transition-colors">
