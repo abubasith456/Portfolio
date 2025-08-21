@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, Send } from 'lucide-react';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -80,20 +80,7 @@ const Contact: React.FC = () => {
                     <p className="text-dynamic">abubasith86@gmail.com</p>
                   </div>
                 </div>
-                
-                <div className="flex items-center space-x-4 group">
-                  <motion.div 
-                    className="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center group-hover:scale-110 transition-all duration-300"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Phone className="w-5 h-5 text-white" />
-                  </motion.div>
-                  <div>
-                    <p className="text-dynamic font-medium">Phone</p>
-                    <p className="text-dynamic">+91 9585909514</p>
-                  </div>
-                </div>
+
                 
                 <div className="flex items-center space-x-4 group">
                   <motion.div 

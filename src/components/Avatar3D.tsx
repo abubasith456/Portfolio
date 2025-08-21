@@ -25,14 +25,14 @@ const AvatarModel: React.FC = () => {
     if (scene) {
       // Debug: Log all bones in the model
       console.log('Model bones:');
-      scene.traverse((child) => {
+      scene.traverse((child: any) => {
         if (child.isBone) {
           console.log('Bone:', child.name);
         }
       });
       
       // Find and rotate head bone to look straight ahead
-      scene.traverse((child) => {
+      scene.traverse((child: any) => {
         if (child.isBone && (child.name.toLowerCase().includes('head') || child.name.toLowerCase().includes('neck'))) {
           console.log('Rotating bone:', child.name);
           child.rotation.x = -0.3; // Tilt head down to look straight
