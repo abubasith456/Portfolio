@@ -81,7 +81,7 @@ const AvatarModel: React.FC = () => {
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
       {/* 3D Avatar Model - Centered and properly positioned */}
-      <group ref={avatarRef} position={[0, 0, 0]} scale={[2, 2, 2]}>
+      <group ref={avatarRef} position={[0, -2, 0]} scale={[2, 2, 2]}>
         <primitive object={scene} />
       </group>
     </group>
