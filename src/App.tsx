@@ -5,6 +5,8 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import DeveloperBackground from './components/DeveloperBackground';
+import EnhancedBackground from './components/EnhancedBackground';
+import ScrollProgress from './components/ScrollProgress';
 
 const App: React.FC = () => {
   const [isDark, setIsDark] = useState(true);
@@ -37,6 +39,8 @@ const App: React.FC = () => {
   return (
     <div className={`min-h-screen ${isDark ? 'dark' : 'light'}`}>
       <DeveloperBackground />
+      <EnhancedBackground />
+      <ScrollProgress />
       <Navigation isDark={isDark} toggleTheme={toggleTheme} />
       <main>
         <Hero />

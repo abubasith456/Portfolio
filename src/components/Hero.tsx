@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
             >
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-accent-primary rounded-full animate-pulse"></div>
-                <span className="text-dynamic-secondary font-mono text-sm tracking-wider">SOFTWARE ENGINEER</span>
+                <span className="text-dynamic-secondary font-mono text-sm tracking-wider animate-fade-in">SOFTWARE ENGINEER</span>
               </div>
               
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">

@@ -166,7 +166,7 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl glass border border-white/20 text-dynamic placeholder-dynamic/50 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300"
+                    className="w-full px-4 py-4 sm:py-3 rounded-xl glass border border-white/20 text-dynamic placeholder-dynamic/50 focus:outline-none focus:ring-2 focus:ring-accent-primary transition-all duration-300 text-base"
                     placeholder="Your name"
                   />
                 </div>
@@ -182,7 +182,7 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-xl glass border border-white/20 text-dynamic placeholder-dynamic/50 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300"
+                    className="w-full px-4 py-4 sm:py-3 rounded-xl glass border border-white/20 text-dynamic placeholder-dynamic/50 focus:outline-none focus:ring-2 focus:ring-accent-primary transition-all duration-300 text-base"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -198,21 +198,29 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 rounded-xl glass border border-white/20 text-dynamic placeholder-dynamic/50 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300 resize-none"
+                    className="w-full px-4 py-4 sm:py-3 rounded-xl glass border border-white/20 text-dynamic placeholder-dynamic/50 focus:outline-none focus:ring-2 focus:ring-accent-primary transition-all duration-300 resize-none text-base"
                     placeholder="Tell me about your project..."
                   />
                 </div>
                 
                 {submitStatus === 'success' && (
-                  <div className="p-3 bg-green-500/20 border border-green-500/30 rounded-xl text-green-600 text-center">
-                    Message sent successfully!
-                  </div>
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    className="p-4 bg-green-500/20 border border-green-500/30 rounded-xl text-green-600 text-center font-medium"
+                  >
+                    ✅ Message sent successfully!
+                  </motion.div>
                 )}
                 
                 {submitStatus === 'error' && (
-                  <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-xl text-red-600 text-center">
-                    Failed to send message. Please try again.
-                  </div>
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    className="p-4 bg-red-500/20 border border-red-500/30 rounded-xl text-red-600 text-center font-medium"
+                  >
+                    ❌ Failed to send message. Please try again.
+                  </motion.div>
                 )}
 
                 <motion.button
@@ -220,10 +228,10 @@ const Contact: React.FC = () => {
                   disabled={isSubmitting}
                   whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                  className={`w-full px-6 py-4 rounded-xl text-white font-semibold text-lg flex items-center justify-center space-x-2 transition-all duration-300 ${
+                  className={`w-full px-6 py-4 rounded-xl text-white font-semibold text-lg flex items-center justify-center space-x-2 transition-all duration-300 btn-enhanced ${
                     isSubmitting 
                       ? 'bg-gray-500 cursor-not-allowed' 
-                      : 'gradient-bg hover:shadow-lg'
+                      : 'hover:shadow-lg'
                   }`}
                 >
                   {isSubmitting ? (

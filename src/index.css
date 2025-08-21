@@ -63,6 +63,43 @@
 		touch-action: pan-y;
 		-webkit-overflow-scrolling: touch;
 	}
+	
+	/* Enhanced mobile styles */
+	.mobile-optimized {
+		@apply px-4 sm:px-6 lg:px-8;
+	}
+	
+	/* Enhanced button styles */
+	.btn-enhanced {
+		@apply relative overflow-hidden transition-all duration-300;
+		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+	}
+	
+	.btn-enhanced::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+		transition: left 0.5s;
+	}
+	
+	.btn-enhanced:hover::before {
+		left: 100%;
+	}
+	
+	/* Skill progress bars */
+	.skill-progress {
+		@apply w-full bg-gray-200 rounded-full h-2 overflow-hidden;
+		background: rgba(255, 255, 255, 0.1);
+	}
+	
+	.skill-progress-bar {
+		@apply h-full rounded-full transition-all duration-1000 ease-out;
+		background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+	}
 
 	/* Developer-themed animated background */
 	.dev-background {
@@ -224,6 +261,19 @@
 		backdrop-filter: blur(20px);
 		border: 1px solid var(--glass-border);
 		box-shadow: 0 8px 32px var(--shadow-color);
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.glass::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+		pointer-events: none;
 	}
 	
 	.glass-dark {
@@ -247,6 +297,26 @@
 	
 	.gradient-bg {
 		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+		position: relative;
+	}
+	
+	.gradient-border {
+		position: relative;
+		background: var(--card-bg);
+		border-radius: inherit;
+	}
+	
+	.gradient-border::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		padding: 2px;
+		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+		border-radius: inherit;
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask-composite: exclude;
+		-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
 	}
 	
 	.card-hover {
@@ -302,6 +372,39 @@
 	@keyframes devFloat {
 		0%, 100% { transform: translateY(0px) rotate(0deg); }
 		50% { transform: translateY(-20px) rotate(180deg); }
+	}
+	
+	@keyframes pulse-glow {
+		0%, 100% { 
+			box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+			transform: scale(1);
+		}
+		50% { 
+			box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+			transform: scale(1.05);
+		}
+	}
+	
+	@keyframes slideInUp {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	
+	@keyframes fadeInScale {
+		from {
+			opacity: 0;
+			transform: scale(0.9);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
 	}
 
 	/* Scroll-triggered animations */

@@ -48,17 +48,23 @@ const Navigation: React.FC<NavigationProps> = ({ isDark, toggleTheme }) => {
             </motion.button>
           </div>
 
-          <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2 rounded-lg glass text-dynamic">
+          <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setIsOpen(!isOpen)} className="md:hidden p-3 rounded-xl glass text-dynamic hover:bg-white/10 transition-all duration-300">
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </motion.button>
         </div>
 
         <AnimatePresence>
           {isOpen && (
-            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="md:hidden overflow-hidden">
-              <div className="glass rounded-2xl mt-4 p-4 sm:p-6 space-y-4 mx-2">
+            <motion.div 
+              initial={{ opacity: 0, height: 0, y: -20 }}
+              animate={{ opacity: 1, height: 'auto', y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="glass rounded-2xl mt-4 p-4 sm:p-6 space-y-4 mx-2 border border-white/10">
                 {navItems.map((item, index) => (
-                  <motion.button key={item.name} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => scrollToSection(item.href)} className="block w-full text-left text-dynamic hover:text-accent-primary transition-colors duration-300 font-medium py-2" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.1 }}>
+                  <motion.button key={item.name} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => scrollToSection(item.href)} className="block w-full text-left text-dynamic hover:text-accent-primary transition-colors duration-300 font-medium py-3 px-4 rounded-lg hover:bg-white/5" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.1 }}>
                     {item.name}
                   </motion.button>
                 ))}

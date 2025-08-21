@@ -74,13 +74,16 @@ const About: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {skills.map((skill) => (
                 <motion.div key={skill.name} variants={cardVariants} whileHover={{ scale: 1.05, y: -10, transition: { duration: 0.2 } }} className="group relative">
-                  <div className="glass rounded-2xl p-6 text-center card-hover" style={{ background: `linear-gradient(135deg, ${skill.color}16, ${skill.color}0C)`, borderColor: `${skill.color}26` }}>
+                  <div className="glass rounded-2xl p-6 text-center card-hover gradient-border" style={{ background: `linear-gradient(135deg, ${skill.color}16, ${skill.color}0C)`, borderColor: `${skill.color}26` }}>
                     <div className="flex justify-center mb-3" style={{ color: skill.color }}>
                       {skill.icon}
                     </div>
                     <h4 className="font-semibold text-on-card group-hover:text-accent-primary transition-colors">
                       {skill.name}
                     </h4>
+                    <div className="skill-progress mt-3">
+                      <div className="skill-progress-bar" style={{ width: '85%' }}></div>
+                    </div>
                   </div>
                 </motion.div>
               ))}
