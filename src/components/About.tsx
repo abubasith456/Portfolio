@@ -34,7 +34,7 @@ const About: React.FC = () => {
         "Currently working on Knowledgebase and Convo AI solutions",
         "Worked on RDIA Saudi project with Python backend and React frontend"
       ],
-      icon: <Rocket className="w-6 h-6" />
+      icon: <Rocket className="w-6 h-6 text-white" />
     },
     {
       title: "Software Developer Intern",
@@ -46,7 +46,7 @@ const About: React.FC = () => {
         "Worked with backend API database response server",
         "Created applications with Firebase authentication and real-time database"
       ],
-      icon: <Code className="w-6 h-6" />
+      icon: <Code className="w-6 h-6 text-white" />
     }
   ];
 
