@@ -8,13 +8,13 @@ import DeveloperBackground from './components/DeveloperBackground';
 
 const App: React.FC = () => {
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-    document.documentElement.classList.remove('light');
-    localStorage.setItem('theme', 'dark');
+    document.documentElement.classList.add('light');
+    document.documentElement.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
   }, []);
 
   return (
-    <div className={'min-h-screen dark'}>
+    <div className={'min-h-screen light'}>
       {/* Developer-themed animated background */}
       <DeveloperBackground />
 

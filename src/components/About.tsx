@@ -4,11 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { Code, GraduationCap, Award, Heart, Rocket, Globe, Smartphone, Database, GitBranch, Brain, Cpu } from 'lucide-react';
 
 const About: React.FC = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
@@ -22,8 +18,8 @@ const About: React.FC = () => {
     { name: 'Git', icon: <GitBranch className="w-8 h-8" />, color: '#F05032' },
     { name: 'Python', icon: <Code className="w-8 h-8" />, color: '#3776AB' },
     { name: 'React', icon: <Globe className="w-8 h-8" />, color: '#61DAFB' },
-    { name: 'AI/ML', icon: <Brain className="w-8 h-8" />, color: '#FF6B6B' },
-    { name: 'RAG', icon: <Brain className="w-8 h-8" />, color: '#4ECDC4' }
+    { name: 'AI/ML', icon: <Brain className="w-8 h-8" />, color: '#8E8CF0' },
+    { name: 'RAG', icon: <Brain className="w-8 h-8" />, color: '#22d3ee' }
   ];
 
   const experiences = [
@@ -54,53 +50,14 @@ const About: React.FC = () => {
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 50 },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    },
-  };
+  const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } } };
+  const itemVariants = { hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } } };
+  const cardVariants = { hidden: { opacity: 0, scale: 0.8, y: 50 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } };
 
   return (
     <section id="about" className="section-padding relative overflow-hidden">
       <div className="container-custom relative z-10">
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={containerVariants}
-          className="space-y-20"
-        >
-          {/* Section Header */}
+        <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={containerVariants} className="space-y-20">
           <motion.div variants={itemVariants} className="text-center space-y-6">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <div className="w-1 h-8 gradient-bg rounded-full"></div>
@@ -117,7 +74,6 @@ const About: React.FC = () => {
             </p>
           </motion.div>
 
-          {/* Skills Grid */}
           <motion.div variants={itemVariants} className="space-y-8">
             <div className="text-center">
               <h3 className="text-3xl font-bold text-dynamic mb-4">Technical Expertise</h3>
@@ -125,20 +81,9 @@ const About: React.FC = () => {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {skills.map((skill) => (
-                <motion.div
-                  key={skill.name}
-                  variants={cardVariants}
-                  whileHover={{ scale: 1.05, y: -10, transition: { duration: 0.2 } }}
-                  className="group relative"
-                >
-                  <div
-                    className="glass rounded-2xl p-6 text-center card-hover"
-                    style={{
-                      background: `linear-gradient(135deg, ${skill.color}20, ${skill.color}10)`,
-                      borderColor: `${skill.color}30`
-                    }}
-                  >
-                    <div className="flex justify-center mb-3 transition-colors" style={{ color: 'var(--skill-icon-color)' }}>
+                <motion.div key={skill.name} variants={cardVariants} whileHover={{ scale: 1.05, y: -10, transition: { duration: 0.2 } }} className="group relative">
+                  <div className="glass rounded-2xl p-6 text-center card-hover" style={{ background: `linear-gradient(135deg, ${skill.color}16, ${skill.color}0C)`, borderColor: `${skill.color}26` }}>
+                    <div className="flex justify-center mb-3" style={{ color: skill.color }}>
                       {skill.icon}
                     </div>
                     <h4 className="font-semibold text-on-card group-hover:text-accent-primary transition-colors">
