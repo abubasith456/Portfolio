@@ -113,7 +113,7 @@ const Avatar3D: React.FC<AvatarProps> = ({ className }) => {
   return (
     <div className={`w-full h-full ${className}`}>
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 55 }}
+        camera={{ position: [0, 1, 5], fov: 57 }}
         style={{ background: 'transparent' }}
       >
         <ambientLight intensity={0.8} />
