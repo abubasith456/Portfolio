@@ -150,6 +150,11 @@ const About: React.FC = () => {
               </div>
               <div className="space-y-4">
                 <div className="border-l-4 border-l-accent-primary pl-6">
+                  <h4 className="text-xl font-semibold text-on-card">Master of Business Application (MBA)</h4>
+                  <p className="text-dynamic-secondary font-medium">ALAGAPPA UNIVERSITY</p>
+                  <p className="text-dynamic-muted">2023 - 2024</p>
+                </div>
+                <div className="border-l-4 border-l-accent-primary pl-6">
                   <h4 className="text-xl font-semibold text-on-card">Bachelor of Computer Application (BCA)</h4>
                   <p className="text-dynamic-secondary font-medium">JAMAL MOHAMED COLLEGE</p>
                   <p className="text-dynamic-muted">2017 - 2020</p>
