@@ -91,16 +91,16 @@ const About: React.FC = () => {
   };
 
   return (
-    <section id="about" className="section-padding relative overflow-hidden">
+    <section id="about" className="section-padding relative overflow-hidden scroll-bg">
       {/* Animated background elements */}
       <motion.div
         style={{ y, opacity }}
         className="absolute inset-0 pointer-events-none"
       >
-        <div className="absolute top-20 left-10 w-20 h-20 bg-primary-500/10 rounded-full blur-xl" />
-        <div className="absolute top-40 right-20 w-32 h-32 bg-purple-500/10 rounded-full blur-xl" />
-        <div className="absolute bottom-20 left-1/4 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl" />
-        <div className="absolute bottom-40 right-1/3 w-16 h-16 bg-pink-500/10 rounded-full blur-xl" />
+        <div className="floating-element" style={{ width: '120px', height: '120px', top: '15%', left: '5%', animationDelay: '1s' }} />
+        <div className="floating-element" style={{ width: '80px', height: '80px', top: '25%', right: '10%', animationDelay: '3s' }} />
+        <div className="floating-element" style={{ width: '100px', height: '100px', bottom: '15%', left: '15%', animationDelay: '5s' }} />
+        <div className="floating-element" style={{ width: '60px', height: '60px', bottom: '25%', right: '20%', animationDelay: '2s' }} />
       </motion.div>
 
       <div className="container-custom relative z-10">
@@ -116,38 +116,18 @@ const About: React.FC = () => {
             <h2 className="text-5xl md:text-7xl font-bold">
               <span className="gradient-text">About</span>
               <br />
-              <span className="text-white">Me</span>
+              <span className="text-dynamic">Me</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Passionate software engineer crafting innovative solutions with cutting-edge technologies
+            <p className="text-xl text-dynamic max-w-3xl mx-auto leading-relaxed">
+              Passionate software engineer with 3.5+ years of experience crafting innovative solutions
             </p>
-          </motion.div>
-
-          {/* Professional Summary */}
-          <motion.div variants={itemVariants} className="relative">
-            <div className="glass rounded-3xl p-12 card-hover border border-white/10">
-              <div className="flex items-center space-x-4 mb-8">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-2xl flex items-center justify-center">
-                  <Zap className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-3xl font-bold text-white">Professional Summary</h3>
-                  <p className="text-primary-300">3.5+ Years of Excellence</p>
-                </div>
-              </div>
-              <p className="text-lg text-gray-300 leading-relaxed">
-                Software developer with 3.5 years of experience in handling Android, Flutter, 
-                React & React Native, and AI Applications. I excel at managing multiple projects 
-                simultaneously with a high degree of accuracy and attention to detail.
-              </p>
-            </div>
           </motion.div>
 
           {/* Skills Grid */}
           <motion.div variants={itemVariants} className="space-y-8">
             <div className="text-center">
-              <h3 className="text-3xl font-bold text-white mb-4">Technical Expertise</h3>
-              <p className="text-gray-300">Technologies I work with</p>
+              <h3 className="text-3xl font-bold text-dynamic mb-4">Technical Expertise</h3>
+              <p className="text-dynamic">Technologies I work with</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {skills.map((skill, index) => (
@@ -162,16 +142,16 @@ const About: React.FC = () => {
                   className="group relative"
                 >
                   <div 
-                    className="glass rounded-2xl p-6 text-center card-hover border border-white/10"
+                    className="glass rounded-2xl p-6 text-center card-hover"
                     style={{ 
                       background: `linear-gradient(135deg, ${skill.color}20, ${skill.color}10)`,
                       borderColor: `${skill.color}30`
                     }}
                   >
-                    <div className="flex justify-center mb-3 text-white group-hover:text-primary-300 transition-colors">
+                    <div className="flex justify-center mb-3 text-dynamic group-hover:text-primary-300 transition-colors">
                       {skill.icon}
                     </div>
-                    <h4 className="font-semibold text-white group-hover:text-primary-300 transition-colors">
+                    <h4 className="font-semibold text-dynamic group-hover:text-primary-300 transition-colors">
                       {skill.name}
                     </h4>
                   </div>
@@ -183,8 +163,8 @@ const About: React.FC = () => {
           {/* Experience Timeline */}
           <motion.div variants={itemVariants} className="space-y-8">
             <div className="text-center">
-              <h3 className="text-3xl font-bold text-white mb-4">Experience Journey</h3>
-              <p className="text-gray-300">My professional path</p>
+              <h3 className="text-3xl font-bold text-dynamic mb-4">Experience Journey</h3>
+              <p className="text-dynamic">My professional path</p>
             </div>
             <div className="space-y-8">
               {experiences.map((exp, index) => (
@@ -193,25 +173,25 @@ const About: React.FC = () => {
                   variants={cardVariants}
                   className="relative"
                 >
-                  <div className="glass rounded-3xl p-8 card-hover border border-white/10">
+                  <div className="glass rounded-3xl p-8 card-hover">
                     <div className="flex items-start space-x-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                      <div className="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center flex-shrink-0">
                         {exp.icon}
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center space-x-4 mb-4">
-                          <h4 className="text-2xl font-bold text-white">{exp.title}</h4>
-                          <span className="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-sm font-medium">
+                          <h4 className="text-2xl font-bold text-dynamic">{exp.title}</h4>
+                          <span className="px-3 py-1 glass text-dynamic rounded-full text-sm font-medium">
                             {exp.period}
                           </span>
                         </div>
-                        <p className="text-primary-300 font-medium mb-4">{exp.company}</p>
-                        <p className="text-gray-300 mb-6 leading-relaxed">{exp.description}</p>
+                        <p className="text-dynamic font-medium mb-4">{exp.company}</p>
+                        <p className="text-dynamic mb-6 leading-relaxed">{exp.description}</p>
                         <ul className="space-y-2">
                           {exp.achievements.map((achievement, idx) => (
                             <li key={idx} className="flex items-start space-x-3">
-                              <div className="w-2 h-2 bg-primary-400 rounded-full mt-2 flex-shrink-0" />
-                              <span className="text-gray-300">{achievement}</span>
+                              <div className="w-2 h-2 gradient-bg rounded-full mt-2 flex-shrink-0" />
+                              <span className="text-dynamic">{achievement}</span>
                             </li>
                           ))}
                         </ul>
@@ -226,18 +206,18 @@ const About: React.FC = () => {
           {/* Education & Certifications */}
           <motion.div variants={itemVariants} className="grid lg:grid-cols-2 gap-8">
             {/* Education */}
-            <motion.div variants={cardVariants} className="glass rounded-3xl p-8 card-hover border border-white/10">
+            <motion.div variants={cardVariants} className="glass rounded-3xl p-8 card-hover">
               <div className="flex items-center space-x-4 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center">
                   <GraduationCap className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Education</h3>
+                <h3 className="text-2xl font-bold text-dynamic">Education</h3>
               </div>
               <div className="space-y-4">
-                <div className="border-l-4 border-green-500 pl-6">
-                  <h4 className="text-xl font-semibold text-white">Bachelor of Computer Application (BCA)</h4>
-                  <p className="text-green-400 font-medium">JAMAL MOHAMED COLLEGE</p>
-                  <p className="text-gray-400">2017 - 2020</p>
+                <div className="border-l-4 border-l-primary-500 pl-6">
+                  <h4 className="text-xl font-semibold text-dynamic">Bachelor of Computer Application (BCA)</h4>
+                  <p className="text-dynamic font-medium">JAMAL MOHAMED COLLEGE</p>
+                  <p className="text-dynamic opacity-70">2017 - 2020</p>
                 </div>
               </div>
             </motion.div>
@@ -245,30 +225,30 @@ const About: React.FC = () => {
             {/* Certifications & Hobbies */}
             <motion.div variants={cardVariants} className="space-y-6">
               {/* Certification */}
-              <div className="glass rounded-3xl p-8 card-hover border border-white/10">
+              <div className="glass rounded-3xl p-8 card-hover">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center">
                     <Award className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Certification</h3>
+                  <h3 className="text-2xl font-bold text-dynamic">Certification</h3>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                  <span className="text-gray-300 text-lg">Ethical Hacking</span>
+                  <div className="w-3 h-3 gradient-bg rounded-full"></div>
+                  <span className="text-dynamic text-lg">Ethical Hacking</span>
                 </div>
               </div>
 
               {/* Hobbies */}
-              <div className="glass rounded-3xl p-8 card-hover border border-white/10">
+              <div className="glass rounded-3xl p-8 card-hover">
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center">
                     <Heart className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Hobbies</h3>
+                  <h3 className="text-2xl font-bold text-dynamic">Hobbies</h3>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-pink-400 rounded-full"></div>
-                  <span className="text-gray-300 text-lg">Playing Badminton</span>
+                  <div className="w-3 h-3 gradient-bg rounded-full"></div>
+                  <span className="text-dynamic text-lg">Playing Badminton</span>
                 </div>
               </div>
             </motion.div>

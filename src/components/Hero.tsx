@@ -8,6 +8,11 @@ const Hero: React.FC = () => {
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    ['rgba(59, 130, 246, 0.1)', 'rgba(139, 92, 246, 0.1)', 'rgba(6, 182, 212, 0.1)']
+  );
 
   const scrollToNext = () => {
     const nextSection = document.getElementById('about');
@@ -17,30 +22,26 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden scroll-bg">
+      {/* Dynamic background based on scroll */}
+      <motion.div 
+        className="absolute inset-0"
+        style={{ backgroundColor }}
+      />
+
       {/* Enhanced Background particles */}
       <motion.div 
         className="absolute inset-0 overflow-hidden"
         style={{ y, opacity }}
       >
-        {Array.from({ length: 80 }).map((_, i) => (
+        {Array.from({ length: 100 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-primary-400 rounded-full"
+            className="particle"
             style={{
               left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 1, 0.2],
-              scale: [0.5, 1.5, 0.5],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 3,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-              ease: "easeInOut"
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${4 + Math.random() * 2}s`,
             }}
           />
         ))}
@@ -52,39 +53,33 @@ const Hero: React.FC = () => {
         style={{ y, opacity }}
       >
         <motion.div
-          className="absolute top-20 left-20 w-32 h-32 border border-primary-500/20 rounded-full"
-          animate={{
-            rotate: 360,
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
+          className="floating-element"
+          style={{
+            width: '200px',
+            height: '200px',
+            top: '10%',
+            left: '10%',
+            animationDelay: '0s',
           }}
         />
         <motion.div
-          className="absolute top-40 right-32 w-24 h-24 border border-purple-500/20 rounded-lg"
-          animate={{
-            rotate: -360,
-            scale: [1, 0.8, 1],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear"
+          className="floating-element"
+          style={{
+            width: '150px',
+            height: '150px',
+            top: '20%',
+            right: '15%',
+            animationDelay: '2s',
           }}
         />
         <motion.div
-          className="absolute bottom-32 left-1/3 w-20 h-20 border border-cyan-500/20 rounded-full"
-          animate={{
-            rotate: 360,
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
+          className="floating-element"
+          style={{
+            width: '100px',
+            height: '100px',
+            bottom: '20%',
+            left: '20%',
+            animationDelay: '4s',
           }}
         />
       </motion.div>
@@ -104,7 +99,7 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="space-y-6"
             >
-              <h2 className="text-primary-400 font-mono text-lg">Hello, I'm</h2>
+              <h2 className="text-dynamic font-mono text-lg">Hello, I'm</h2>
               <h1 className="text-6xl md:text-8xl font-bold leading-tight">
                 <motion.span 
                   className="gradient-text"
@@ -116,7 +111,7 @@ const Hero: React.FC = () => {
                 </motion.span>
                 <br />
                 <motion.span 
-                  className="text-white"
+                  className="text-dynamic"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9, duration: 0.8 }}
@@ -125,7 +120,7 @@ const Hero: React.FC = () => {
                 </motion.span>
               </h1>
               <motion.h3 
-                className="text-3xl md:text-4xl text-primary-300 font-semibold"
+                className="text-3xl md:text-4xl text-dynamic font-semibold"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.1, duration: 0.8 }}
@@ -138,7 +133,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.8 }}
-              className="text-xl text-gray-300 leading-relaxed max-w-lg"
+              className="text-xl text-dynamic leading-relaxed max-w-lg"
             >
               Crafting innovative digital solutions with cutting-edge technologies. 
               Specialized in mobile development, AI integration, and creating seamless 
@@ -152,33 +147,33 @@ const Hero: React.FC = () => {
               transition={{ delay: 1.5, duration: 0.8 }}
               className="space-y-4"
             >
-              <div className="flex items-center space-x-4 text-gray-300 group">
+              <div className="flex items-center space-x-4 text-dynamic group">
                 <motion.div 
-                  className="w-12 h-12 rounded-xl bg-primary-600/20 border border-primary-500/30 flex items-center justify-center group-hover:bg-primary-500/30 transition-colors"
+                  className="w-12 h-12 rounded-xl glass flex items-center justify-center group-hover:scale-110 transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Mail className="w-5 h-5 text-primary-400" />
+                  <Mail className="w-5 h-5" />
                 </motion.div>
                 <span className="text-lg">abubasith86@gmail.com</span>
               </div>
-              <div className="flex items-center space-x-4 text-gray-300 group">
+              <div className="flex items-center space-x-4 text-dynamic group">
                 <motion.div 
-                  className="w-12 h-12 rounded-xl bg-primary-600/20 border border-primary-500/30 flex items-center justify-center group-hover:bg-primary-500/30 transition-colors"
+                  className="w-12 h-12 rounded-xl glass flex items-center justify-center group-hover:scale-110 transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Phone className="w-5 h-5 text-primary-400" />
+                  <Phone className="w-5 h-5" />
                 </motion.div>
                 <span className="text-lg">+91 9585909514</span>
               </div>
-              <div className="flex items-center space-x-4 text-gray-300 group">
+              <div className="flex items-center space-x-4 text-dynamic group">
                 <motion.div 
-                  className="w-12 h-12 rounded-xl bg-primary-600/20 border border-primary-500/30 flex items-center justify-center group-hover:bg-primary-500/30 transition-colors"
+                  className="w-12 h-12 rounded-xl glass flex items-center justify-center group-hover:scale-110 transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <MapPin className="w-5 h-5 text-primary-400" />
+                  <MapPin className="w-5 h-5" />
                 </motion.div>
                 <span className="text-lg">Perungudi, Chennai</span>
               </div>
@@ -195,7 +190,7 @@ const Hero: React.FC = () => {
                 href="#"
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 rounded-2xl bg-primary-600/20 border border-primary-500/30 flex items-center justify-center text-primary-300 hover:text-primary-400 hover:bg-primary-500/30 transition-all duration-300"
+                className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic hover:scale-110 transition-all duration-300"
               >
                 <Github className="w-7 h-7" />
               </motion.a>
@@ -203,7 +198,7 @@ const Hero: React.FC = () => {
                 href="#"
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 rounded-2xl bg-primary-600/20 border border-primary-500/30 flex items-center justify-center text-primary-300 hover:text-primary-400 hover:bg-primary-500/30 transition-all duration-300"
+                className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic hover:scale-110 transition-all duration-300"
               >
                 <Linkedin className="w-7 h-7" />
               </motion.a>
@@ -211,7 +206,7 @@ const Hero: React.FC = () => {
                 href="#"
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 rounded-2xl bg-primary-600/20 border border-primary-500/30 flex items-center justify-center text-primary-300 hover:text-primary-400 hover:bg-primary-500/30 transition-all duration-300"
+                className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic hover:scale-110 transition-all duration-300"
               >
                 <Twitter className="w-7 h-7" />
               </motion.a>
@@ -226,7 +221,7 @@ const Hero: React.FC = () => {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl text-white font-semibold text-xl shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 border border-primary-500/30"
+                className="px-10 py-5 gradient-bg rounded-2xl text-white font-semibold text-xl shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 border border-white/20"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Get In Touch
@@ -243,7 +238,11 @@ const Hero: React.FC = () => {
             style={{ scale }}
           >
             <motion.div 
-              className="absolute inset-0 bg-gradient-to-br from-primary-600/20 to-purple-600/20 rounded-full blur-3xl"
+              className="absolute inset-0 rounded-full blur-3xl"
+              style={{
+                background: `linear-gradient(45deg, var(--accent-primary), var(--accent-secondary))`,
+                opacity: 0.3,
+              }}
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.3, 0.6, 0.3],
@@ -270,7 +269,7 @@ const Hero: React.FC = () => {
           onClick={scrollToNext}
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="text-primary-400 hover:text-primary-300 transition-colors"
+          className="text-dynamic hover:text-primary-300 transition-colors"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
