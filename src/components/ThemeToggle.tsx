@@ -8,12 +8,18 @@ interface ThemeToggleProps {
 }
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ isDark, toggleTheme }) => {
+  const handleToggle = () => {
+    console.log('Theme toggle clicked, current theme:', isDark ? 'dark' : 'light');
+    toggleTheme();
+  };
+
   return (
     <motion.button
-      onClick={toggleTheme}
+      onClick={handleToggle}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       className="fixed top-6 right-6 z-50 w-12 h-12 rounded-full glass flex items-center justify-center text-dynamic hover:scale-110 transition-all duration-300 shadow-lg border border-white/20"
+      title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
     >
       <motion.div
         initial={false}

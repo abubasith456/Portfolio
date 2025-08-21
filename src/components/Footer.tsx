@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, Facebook, Instagram } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
                 <li>
                   <button 
                     onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-dynamic hover:text-primary-400 transition-colors duration-300"
+                    className="text-dynamic hover:text-accent-primary transition-colors duration-300"
                   >
                     Home
                   </button>
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
                 <li>
                   <button 
                     onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-dynamic hover:text-primary-400 transition-colors duration-300"
+                    className="text-dynamic hover:text-accent-primary transition-colors duration-300"
                   >
                     About
                   </button>
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
                 <li>
                   <button 
                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-dynamic hover:text-primary-400 transition-colors duration-300"
+                    className="text-dynamic hover:text-accent-primary transition-colors duration-300"
                   >
                     Contact
                   </button>
@@ -103,34 +103,50 @@ const Footer: React.FC = () => {
             className="flex justify-center space-x-6"
           >
             <motion.a
-              href="#"
+              href="https://www.facebook.com/abu.basith46"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 glass rounded-xl flex items-center justify-center text-dynamic hover:text-primary-400 transition-all duration-300"
+              className="w-12 h-12 glass rounded-xl flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
             >
-              <Github className="w-5 h-5" />
+              <Facebook className="w-5 h-5" />
             </motion.a>
             <motion.a
-              href="#"
+              href="https://in.linkedin.com/in/abu-basith-16903796"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 glass rounded-xl flex items-center justify-center text-dynamic hover:text-primary-400 transition-all duration-300"
+              className="w-12 h-12 glass rounded-xl flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
             >
               <Linkedin className="w-5 h-5" />
             </motion.a>
             <motion.a
-              href="#"
+              href="https://github.com/abubasith456"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 glass rounded-xl flex items-center justify-center text-dynamic hover:text-primary-400 transition-all duration-300"
+              className="w-12 h-12 glass rounded-xl flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
             >
-              <Twitter className="w-5 h-5" />
+              <Github className="w-5 h-5" />
+            </motion.a>
+            <motion.a
+              href="https://instagram.com/dusky_boy_abu?igshid=OGQ5ZDc2ODk2ZA=="
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-12 h-12 glass rounded-xl flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
+            >
+              <Instagram className="w-5 h-5" />
             </motion.a>
             <motion.a
               href="mailto:abubasith86@gmail.com"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 glass rounded-xl flex items-center justify-center text-dynamic hover:text-primary-400 transition-all duration-300"
+              className="w-12 h-12 glass rounded-xl flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
             >
               <Mail className="w-5 h-5" />
             </motion.a>

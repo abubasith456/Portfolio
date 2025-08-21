@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Twitter, Download } from 'lucide-react';
+import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Facebook, Instagram, Download } from 'lucide-react';
 import Avatar3D from './Avatar3D';
 
 const Hero: React.FC = () => {
@@ -117,15 +117,19 @@ const Hero: React.FC = () => {
               className="flex space-x-4"
             >
               <motion.a
-                href="#"
+                href="https://www.facebook.com/abu.basith46"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
               >
-                <Github className="w-7 h-7" />
+                <Facebook className="w-7 h-7" />
               </motion.a>
               <motion.a
-                href="#"
+                href="https://in.linkedin.com/in/abu-basith-16903796"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
@@ -133,12 +137,24 @@ const Hero: React.FC = () => {
                 <Linkedin className="w-7 h-7" />
               </motion.a>
               <motion.a
-                href="#"
+                href="https://github.com/abubasith456"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
               >
-                <Twitter className="w-7 h-7" />
+                <Github className="w-7 h-7" />
+              </motion.a>
+              <motion.a
+                href="https://instagram.com/dusky_boy_abu?igshid=OGQ5ZDc2ODk2ZA=="
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.1, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
+              >
+                <Instagram className="w-7 h-7" />
               </motion.a>
             </motion.div>
 

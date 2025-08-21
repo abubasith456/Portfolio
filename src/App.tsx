@@ -15,14 +15,19 @@ const App: React.FC = () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       setIsDark(savedTheme === 'dark');
+      console.log('Loaded theme from localStorage:', savedTheme);
     } else {
       // Default to dark theme
       setIsDark(true);
+      console.log('No saved theme, defaulting to dark');
     }
   }, []);
 
   useEffect(() => {
     // Apply theme to document
+    const theme = isDark ? 'dark' : 'light';
+    console.log('Applying theme:', theme);
+    
     if (isDark) {
       document.documentElement.classList.add('dark');
       document.documentElement.classList.remove('light');
@@ -30,10 +35,11 @@ const App: React.FC = () => {
       document.documentElement.classList.add('light');
       document.documentElement.classList.remove('dark');
     }
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('theme', theme);
   }, [isDark]);
 
   const toggleTheme = () => {
+    console.log('Toggling theme from:', isDark ? 'dark' : 'light', 'to:', !isDark ? 'dark' : 'light');
     setIsDark(!isDark);
   };
 
