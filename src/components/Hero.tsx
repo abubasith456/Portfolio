@@ -185,7 +185,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, x: 100, scale: 0.8 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
-            className="h-[700px] relative"
+            className="h-[800px] relative"
             style={{ scale }}
           >
             <motion.div 
