@@ -16,8 +16,16 @@ const AvatarModel: React.FC = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [clickAnimation, setClickAnimation] = useState(0);
   
-  // Load the avatar texture
+  // Load the avatar texture with error handling
   const avatarTexture = useTexture('/avatar.png');
+  
+  // Handle texture loading
+  useEffect(() => {
+    if (avatarTexture) {
+      avatarTexture.flipY = false; // Prevent texture flipping
+      avatarTexture.needsUpdate = true;
+    }
+  }, [avatarTexture]);
   
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -90,6 +98,7 @@ const AvatarModel: React.FC = () => {
           transparent
           alphaTest={0.1}
           side={THREE.DoubleSide}
+          toneMapped={false}
         />
       </Plane>
       
