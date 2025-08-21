@@ -11,6 +11,33 @@ const Hero: React.FC = () => {
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
+  const resolveCvPath = async (): Promise<string> => {
+    const candidatePaths = [
+      `${process.env.PUBLIC_URL || ''}/cv.docx`,
+      `${process.env.PUBLIC_URL || ''}/cv.docs`,
+      `${process.env.PUBLIC_URL || ''}/cv.pdf`,
+    ];
+    for (const path of candidatePaths) {
+      try {
+        const response = await fetch(path, { method: 'HEAD' });
+        if (response.ok) return path;
+      } catch {
+        // continue trying next candidate
+      }
+    }
+    return `${process.env.PUBLIC_URL || ''}/cv.docx`;
+  };
+
+  const handleDownloadCV = async () => {
+    const path = await resolveCvPath();
+    const anchorElement = document.createElement('a');
+    anchorElement.href = path;
+    anchorElement.download = (path.split('/').pop() || 'cv').toString();
+    document.body.appendChild(anchorElement);
+    anchorElement.click();
+    document.body.removeChild(anchorElement);
+  };
+
   const scrollToNext = () => {
     const nextSection = document.getElementById('about');
     if (nextSection) {
@@ -171,6 +198,7 @@ const Hero: React.FC = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 glass rounded-2xl text-dynamic font-semibold text-lg border border-white/20 hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2"
+                onClick={handleDownloadCV}
               >
                 <Download className="w-5 h-5" />
                 <span>Download CV</span>
