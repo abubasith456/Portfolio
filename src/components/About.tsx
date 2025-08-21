@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, GraduationCap, Award, Heart, Zap, Rocket, Brain, Globe } from 'lucide-react';
+import { Code, GraduationCap, Award, Heart, Zap, Rocket, Globe, Smartphone, Database, GitBranch, Brain, Cpu } from 'lucide-react';
 
 const About: React.FC = () => {
   const [ref, inView] = useInView({
@@ -14,16 +14,16 @@ const About: React.FC = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
 
   const skills = [
-    { name: 'Android', icon: '📱', color: '#3DDC84' },
-    { name: 'Flutter', icon: '🦋', color: '#02569B' },
-    { name: 'React Native', icon: '⚛️', color: '#61DAFB' },
-    { name: 'Node.js', icon: '🟢', color: '#339933' },
-    { name: 'Firebase', icon: '🔥', color: '#FFCA28' },
-    { name: 'Git', icon: '📝', color: '#F05032' },
-    { name: 'Python', icon: '🐍', color: '#3776AB' },
-    { name: 'React', icon: '⚛️', color: '#61DAFB' },
-    { name: 'AI/ML', icon: '🤖', color: '#FF6B6B' },
-    { name: 'RAG', icon: '🧠', color: '#4ECDC4' }
+    { name: 'Android', icon: <Smartphone className="w-8 h-8" />, color: '#3DDC84' },
+    { name: 'Flutter', icon: <Code className="w-8 h-8" />, color: '#02569B' },
+    { name: 'React Native', icon: <Smartphone className="w-8 h-8" />, color: '#61DAFB' },
+    { name: 'Node.js', icon: <Cpu className="w-8 h-8" />, color: '#339933' },
+    { name: 'Firebase', icon: <Database className="w-8 h-8" />, color: '#FFCA28' },
+    { name: 'Git', icon: <GitBranch className="w-8 h-8" />, color: '#F05032' },
+    { name: 'Python', icon: <Code className="w-8 h-8" />, color: '#3776AB' },
+    { name: 'React', icon: <Globe className="w-8 h-8" />, color: '#61DAFB' },
+    { name: 'AI/ML', icon: <Brain className="w-8 h-8" />, color: '#FF6B6B' },
+    { name: 'RAG', icon: <Brain className="w-8 h-8" />, color: '#4ECDC4' }
   ];
 
   const experiences = [
@@ -113,16 +113,6 @@ const About: React.FC = () => {
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center space-y-6">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={inView ? { scale: 1 } : { scale: 0 }}
-              transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-              className="inline-block"
-            >
-              <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-500 to-purple-600 rounded-full flex items-center justify-center mb-6">
-                <Brain className="w-10 h-10 text-white" />
-              </div>
-            </motion.div>
             <h2 className="text-5xl md:text-7xl font-bold">
               <span className="gradient-text">About</span>
               <br />
@@ -178,7 +168,9 @@ const About: React.FC = () => {
                       borderColor: `${skill.color}30`
                     }}
                   >
-                    <div className="text-4xl mb-3">{skill.icon}</div>
+                    <div className="flex justify-center mb-3 text-white group-hover:text-primary-300 transition-colors">
+                      {skill.icon}
+                    </div>
                     <h4 className="font-semibold text-white group-hover:text-primary-300 transition-colors">
                       {skill.name}
                     </h4>

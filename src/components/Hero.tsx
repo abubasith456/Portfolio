@@ -104,17 +104,6 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="space-y-6"
             >
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-                className="inline-block"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
-                  <span className="text-2xl">👋</span>
-                </div>
-              </motion.div>
-              
               <h2 className="text-primary-400 font-mono text-lg">Hello, I'm</h2>
               <h1 className="text-6xl md:text-8xl font-bold leading-tight">
                 <motion.span 
@@ -151,9 +140,9 @@ const Hero: React.FC = () => {
               transition={{ delay: 1.3, duration: 0.8 }}
               className="text-xl text-gray-300 leading-relaxed max-w-lg"
             >
-              Software developer with 3.5 years of experience in handling Android, 
-              Flutter, React & React Native, and AI Applications, with the ability 
-              to handle multiple projects simultaneously with a high degree of accuracy.
+              Crafting innovative digital solutions with cutting-edge technologies. 
+              Specialized in mobile development, AI integration, and creating seamless 
+              user experiences that make a difference.
             </motion.p>
 
             {/* Contact Info */}
