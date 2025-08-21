@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, useGLTF, useAnimations } from '@react-three/drei';
+import { OrbitControls, useGLTF, useAnimations, Sphere } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface AvatarProps {
@@ -15,9 +15,10 @@ const AvatarModel: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isClicked, setIsClicked] = useState(false);
   const [clickAnimation, setClickAnimation] = useState(0);
+  const [loadError, setLoadError] = useState(false);
   
-  // Load the 3D model
-  const { scene, animations } = useGLTF('/model.glb');
+  // Load the 3D model with error handling
+  const { scene, animations } = useGLTF('/model.glb', true);
   const { actions } = useAnimations(animations, avatarRef);
   
   useEffect(() => {
@@ -77,22 +78,49 @@ const AvatarModel: React.FC = () => {
     }
   });
 
+  // Fallback avatar if model fails to load
+  const FallbackAvatar = () => (
+    <group position={[0, -1, 0]} scale={[1, 1, 1]}>
+      {/* Simple geometric avatar */}
+      <Sphere args={[0.3, 32, 32]} position={[0, 1.5, 0]}>
+        <meshStandardMaterial color="#fbbf24" />
+      </Sphere>
+      <Sphere args={[0.4, 32, 32]} position={[0, 0.8, 0]}>
+        <meshStandardMaterial color="#3b82f6" />
+      </Sphere>
+      <Sphere args={[0.15, 16, 16]} position={[-0.4, 0.8, 0]}>
+        <meshStandardMaterial color="#3b82f6" />
+      </Sphere>
+      <Sphere args={[0.15, 16, 16]} position={[0.4, 0.8, 0]}>
+        <meshStandardMaterial color="#3b82f6" />
+      </Sphere>
+    </group>
+  );
+
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      {/* 3D Avatar Model - Centered and properly positioned */}
-      <group ref={avatarRef} position={[0, -2.3, 0]} scale={[2.5, 2.5, 2.5]}>
-        <primitive object={scene} />
-      </group>
+      {!scene || loadError ? (
+        <FallbackAvatar />
+      ) : (
+        /* 3D Avatar Model - Centered and properly positioned */
+        <group ref={avatarRef} position={[0, -2.3, 0]} scale={[2.5, 2.5, 2.5]}>
+          <primitive object={scene} />
+        </group>
+      )}
     </group>
   );
 };
+
+// Preload the model to avoid loading errors
+useGLTF.preload('/model.glb');
 
 const Avatar3D: React.FC<AvatarProps> = ({ className }) => {
   return (
     <div className={`w-full h-full ${className}`}>
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 55 }}
+        camera={{ position: [0, 0, 5], fov: 50 }}
         style={{ background: 'transparent' }}
+        onError={(error) => console.error('Canvas error:', error)}
       >
         <ambientLight intensity={0.8} />
         <pointLight position={[10, 10, 10]} intensity={1.0} color="#ffffff" />
@@ -100,7 +128,18 @@ const Avatar3D: React.FC<AvatarProps> = ({ className }) => {
         <pointLight position={[0, 10, 0]} intensity={0.5} color="#06b6d4" />
         <pointLight position={[0, -10, 0]} intensity={0.3} color="#fbbf24" />
         
-        <AvatarModel />
+        <React.Suspense fallback={
+          <group position={[0, -1, 0]}>
+            <Sphere args={[0.3, 32, 32]} position={[0, 1.5, 0]}>
+              <meshStandardMaterial color="#fbbf24" />
+            </Sphere>
+            <Sphere args={[0.4, 32, 32]} position={[0, 0.8, 0]}>
+              <meshStandardMaterial color="#3b82f6" />
+            </Sphere>
+          </group>
+        }>
+          <AvatarModel />
+        </React.Suspense>
         
         <OrbitControls
           enableZoom={false}
