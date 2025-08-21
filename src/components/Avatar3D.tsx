@@ -80,8 +80,8 @@ const AvatarModel: React.FC = () => {
     }
     
     if (planeRef.current) {
-      // Subtle rotation animation
-      planeRef.current.rotation.z = Math.sin(time * 0.5) * 0.02;
+      // Subtle rotation animation - much slower
+      planeRef.current.rotation.z = Math.sin(time * 0.2) * 0.01;
     }
   });
 
@@ -92,7 +92,7 @@ const AvatarModel: React.FC = () => {
         ref={planeRef}
         args={[2, 2]} 
         position={[0, 0, 0]}
-        rotation={[0, 0, Math.PI]}
+        rotation={[Math.PI, 0, 0]}
       >
         <meshStandardMaterial 
           map={avatarTexture}
@@ -105,20 +105,20 @@ const AvatarModel: React.FC = () => {
       
 
       
-      {/* Floating particles around avatar */}
-      {Array.from({ length: 20 }).map((_, i) => (
+      {/* Floating particles around avatar - slower animation */}
+      {Array.from({ length: 15 }).map((_, i) => (
         <group key={i} position={[
           (Math.random() - 0.5) * 4,
           (Math.random() - 0.5) * 4,
           (Math.random() - 0.5) * 2
         ]}>
-          <Plane args={[0.05, 0.05]}>
+          <Plane args={[0.03, 0.03]}>
             <meshStandardMaterial 
               color="#06b6d4" 
               emissive="#06b6d4" 
-              emissiveIntensity={0.8}
+              emissiveIntensity={0.6}
               transparent
-              opacity={0.7}
+              opacity={0.5}
               side={THREE.DoubleSide}
             />
           </Plane>
