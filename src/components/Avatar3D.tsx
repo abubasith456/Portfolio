@@ -111,10 +111,10 @@ const AvatarModel: React.FC = () => {
 
 const Avatar3D: React.FC<AvatarProps> = ({ className }) => {
   return (
-    <div className={`w-full h-full avatar-container ${className}`}>
+    <div className={`w-full h-full ${className}`} style={{ touchAction: 'pan-y' }}>
       <Canvas
         camera={{ position: [0, 1, 5], fov: 57 }}
-        style={{ background: 'transparent' }}
+        style={{ background: 'transparent', touchAction: 'pan-y' }}
       >
         <ambientLight intensity={0.8} />
         <pointLight position={[10, 10, 10]} intensity={1.0} color="#ffffff" />
@@ -131,6 +131,7 @@ const Avatar3D: React.FC<AvatarProps> = ({ className }) => {
           autoRotate={false}
           enableDamping={false}
           dampingFactor={0}
+          touches={{ ONE: 0, TWO: 0 }}
         />
       </Canvas>
     </div>
