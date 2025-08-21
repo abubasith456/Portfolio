@@ -46,8 +46,9 @@ const AvatarModel: React.FC = () => {
     if (actions && Object.keys(actions).length > 0) {
       // Play the first animation (usually idle)
       const firstAnimation = Object.keys(actions)[0];
-      if (actions[firstAnimation]) {
-        actions[firstAnimation].play();
+      const action = actions[firstAnimation];
+      if (action && typeof action.play === 'function') {
+        action.play();
       }
     }
   }, [actions]);

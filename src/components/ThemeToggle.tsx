@@ -8,7 +8,7 @@ interface ThemeToggleProps {
 }
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ isDark, toggleTheme }) => {
-  const handleToggle = (e: React.MouseEvent) => {
+  const handleToggle = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     e.stopPropagation();
     console.log('Theme toggle clicked, current theme:', isDark ? 'dark' : 'light');
