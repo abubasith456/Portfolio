@@ -25,17 +25,17 @@ const Contact: React.FC = () => {
 
     try {
       const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
+        name: formData.name,
+        email: formData.email,
         message: formData.message,
-        to_email: 'mohamedabu.basith@gmail.com'
+        time: new Date().toLocaleString()
       };
 
       await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        'service_2ca6m9l',
+        'template_25bzbbp',
         templateParams,
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+        'DSBcYORjRnG6QqDRQ'
       );
 
       setSubmitStatus('success');

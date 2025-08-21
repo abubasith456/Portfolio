@@ -24,11 +24,11 @@ await emailjs.send(
 
 ## Email Template Variables
 
-Your EmailJS template should include:
-- `{{from_name}}` - Sender's name
-- `{{from_email}}` - Sender's email
+Your EmailJS template includes:
+- `{{name}}` - Sender's name
+- `{{email}}` - Sender's email  
 - `{{message}}` - Message content
-- `{{to_email}}` - Your email (mohamedabu.basith@gmail.com)
+- `{{time}}` - Submission timestamp
 
 ## Security Note
 
