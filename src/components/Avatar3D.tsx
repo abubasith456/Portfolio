@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, Box, Cylinder, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
@@ -18,6 +18,21 @@ const AvatarModel: React.FC = () => {
   const hairRef = useRef<THREE.Group>(null);
   const leftEyeRef = useRef<THREE.Mesh>(null);
   const rightEyeRef = useRef<THREE.Mesh>(null);
+  
+  // Mouse tracking state
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      // Normalize mouse position to -1 to 1 range
+      const x = (event.clientX / window.innerWidth) * 2 - 1;
+      const y = -(event.clientY / window.innerHeight) * 2 + 1;
+      setMousePosition({ x, y });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
@@ -28,11 +43,23 @@ const AvatarModel: React.FC = () => {
     }
     
     if (headRef.current) {
-      headRef.current.rotation.y = Math.sin(time * 1) * 0.03;
+      // Combine gentle swaying with mouse tracking
+      const swayY = Math.sin(time * 1) * 0.03;
+      const mouseY = mousePosition.x * 0.3; // Head follows mouse horizontally
+      const mouseX = mousePosition.y * 0.2; // Head tilts based on mouse vertically
+      
+      headRef.current.rotation.y = swayY + mouseY;
+      headRef.current.rotation.x = mouseX;
     }
     
     if (hairRef.current) {
-      hairRef.current.rotation.y = Math.sin(time * 1) * 0.03;
+      // Hair follows head movement
+      const swayY = Math.sin(time * 1) * 0.03;
+      const mouseY = mousePosition.x * 0.3;
+      const mouseX = mousePosition.y * 0.2;
+      
+      hairRef.current.rotation.y = swayY + mouseY;
+      hairRef.current.rotation.x = mouseX;
     }
     
     if (leftEyeRef.current && rightEyeRef.current) {
@@ -40,6 +67,15 @@ const AvatarModel: React.FC = () => {
       const blink = Math.sin(time * 3) > 0.8 ? 0.01 : 0.08;
       leftEyeRef.current.scale.y = blink;
       rightEyeRef.current.scale.y = blink;
+      
+      // Eyes follow mouse more subtly
+      const eyeFollowX = mousePosition.x * 0.1;
+      const eyeFollowY = mousePosition.y * 0.05;
+      
+      leftEyeRef.current.position.x = -0.1 + eyeFollowX;
+      leftEyeRef.current.position.y = eyeFollowY;
+      rightEyeRef.current.position.x = 0.1 + eyeFollowX;
+      rightEyeRef.current.position.y = eyeFollowY;
     }
     
     if (leftArmRef.current) {
@@ -202,10 +238,8 @@ const Avatar3D: React.FC<AvatarProps> = ({ className }) => {
         <OrbitControls
           enableZoom={false}
           enablePan={false}
-          autoRotate
-          autoRotateSpeed={0.6}
-          maxPolarAngle={Math.PI / 2.3}
-          minPolarAngle={Math.PI / 2.3}
+          enableRotate={false}
+          autoRotate={false}
         />
       </Canvas>
     </div>
