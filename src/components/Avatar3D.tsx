@@ -111,7 +111,7 @@ const AvatarModel: React.FC = () => {
 
 const Avatar3D: React.FC<AvatarProps> = ({ className }) => {
   return (
-    <div className={`w-full h-full ${className}`}>
+    <div className={`w-full h-full avatar-container ${className}`}>
       <Canvas
         camera={{ position: [0, 1, 5], fov: 57 }}
         style={{ background: 'transparent' }}
@@ -129,6 +129,8 @@ const Avatar3D: React.FC<AvatarProps> = ({ className }) => {
           enablePan={false}
           enableRotate={false}
           autoRotate={false}
+          enableDamping={false}
+          dampingFactor={0}
         />
       </Canvas>
     </div>
