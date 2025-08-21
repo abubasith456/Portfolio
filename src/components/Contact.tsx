@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, MapPin, Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,18 +10,42 @@ const Contact: React.FC = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'mohamedabu.basith@gmail.com'
+      };
+
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        templateParams,
+        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+      );
+
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Email error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -77,7 +102,7 @@ const Contact: React.FC = () => {
                   </motion.div>
                   <div>
                     <p className="text-dynamic font-medium">Email</p>
-                    <p className="text-dynamic">abubasith86@gmail.com</p>
+                    <p className="text-dynamic">mohamedabu.basith@gmail.com</p>
                   </div>
                 </div>
 
@@ -178,14 +203,40 @@ const Contact: React.FC = () => {
                   />
                 </div>
                 
+                {submitStatus === 'success' && (
+                  <div className="p-3 bg-green-500/20 border border-green-500/30 rounded-xl text-green-600 text-center">
+                    Message sent successfully!
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-xl text-red-600 text-center">
+                    Failed to send message. Please try again.
+                  </div>
+                )}
+
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full px-6 py-4 gradient-bg rounded-xl text-white font-semibold text-lg flex items-center justify-center space-x-2 hover:shadow-lg transition-all duration-300"
+                  disabled={isSubmitting}
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  className={`w-full px-6 py-4 rounded-xl text-white font-semibold text-lg flex items-center justify-center space-x-2 transition-all duration-300 ${
+                    isSubmitting 
+                      ? 'bg-gray-500 cursor-not-allowed' 
+                      : 'gradient-bg hover:shadow-lg'
+                  }`}
                 >
-                  <Send className="w-5 h-5" />
-                  <span>Send Message</span>
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      <span>Send Message</span>
+                    </>
+                  )}
                 </motion.button>
               </form>
             </div>

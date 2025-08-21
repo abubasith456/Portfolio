@@ -87,7 +87,7 @@ const Footer: React.FC = () => {
             >
               <h4 className="text-lg font-semibold text-dynamic">Contact</h4>
               <div className="space-y-2 text-dynamic">
-                <p>abubasith86@gmail.com</p>
+                <p>mohamedabu.basith@gmail.com</p>
                 <p>Perungudi, Chennai</p>
               </div>
             </motion.div>
@@ -142,7 +142,7 @@ const Footer: React.FC = () => {
               <Instagram className="w-5 h-5" />
             </motion.a>
             <motion.a
-              href="mailto:abubasith86@gmail.com"
+                              href="mailto:mohamedabu.basith@gmail.com"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
               className="w-12 h-12 glass rounded-xl flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
