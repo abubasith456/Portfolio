@@ -23,7 +23,6 @@ const AvatarModel: React.FC = () => {
   useEffect(() => {
     if (avatarTexture) {
       avatarTexture.flipY = false; // Prevent texture flipping
-      avatarTexture.rotation = Math.PI; // Rotate texture 180 degrees
       avatarTexture.needsUpdate = true;
     }
   }, [avatarTexture]);
@@ -93,6 +92,7 @@ const AvatarModel: React.FC = () => {
         ref={planeRef}
         args={[2, 2]} 
         position={[0, 0, 0]}
+        rotation={[0, 0, Math.PI]}
       >
         <meshStandardMaterial 
           map={avatarTexture}
