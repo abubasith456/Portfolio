@@ -52,7 +52,7 @@ const AvatarModel: React.FC = () => {
     }
   }, [actions]);
 
-  useFrame((state) => {
+    useFrame((state) => {
     const time = state.clock.getElapsedTime();
     
     // Click animation
@@ -70,11 +70,18 @@ const AvatarModel: React.FC = () => {
       const maxRotation = 0.5;
       const mouseY = Math.max(-maxRotation, Math.min(maxRotation, mousePosition.x * 0.8));
       
+      // Scroll-based rotation animation
+      const scrollY = window.scrollY;
+      const scrollRotation = (scrollY / window.innerHeight) * Math.PI * 2; // Full rotation based on scroll
+      
+      // Combine mouse tracking with scroll rotation
+      const targetRotation = mouseY + scrollRotation;
+      
       // Smooth interpolation for horizontal rotation only
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouseY, 0.2);
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetRotation, 0.2);
       groupRef.current.rotation.x = 0; // Keep vertical rotation at 0
       
-
+ 
     }
   });
 

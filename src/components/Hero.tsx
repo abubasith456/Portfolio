@@ -91,16 +91,7 @@ const Hero: React.FC = () => {
                 </motion.div>
                 <span className="text-lg">abubasith86@gmail.com</span>
               </div>
-              <div className="flex items-center space-x-4 text-dynamic-secondary group">
-                <motion.div 
-                  className="w-12 h-12 rounded-xl glass flex items-center justify-center group-hover:scale-110 transition-all duration-300"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Phone className="w-5 h-5 text-on-glass" />
-                </motion.div>
-                <span className="text-lg">+91 9585909514</span>
-              </div>
+
               <div className="flex items-center space-x-4 text-dynamic-secondary group">
                 <motion.div 
                   className="w-12 h-12 rounded-xl glass flex items-center justify-center group-hover:scale-110 transition-all duration-300"
