@@ -91,18 +91,7 @@ const About: React.FC = () => {
   };
 
   return (
-    <section id="about" className="section-padding relative overflow-hidden scroll-bg">
-      {/* Animated background elements */}
-      <motion.div
-        style={{ y, opacity }}
-        className="absolute inset-0 pointer-events-none"
-      >
-        <div className="floating-element" style={{ width: '120px', height: '120px', top: '15%', left: '5%', animationDelay: '1s' }} />
-        <div className="floating-element" style={{ width: '80px', height: '80px', top: '25%', right: '10%', animationDelay: '3s' }} />
-        <div className="floating-element" style={{ width: '100px', height: '100px', bottom: '15%', left: '15%', animationDelay: '5s' }} />
-        <div className="floating-element" style={{ width: '60px', height: '60px', bottom: '25%', right: '20%', animationDelay: '2s' }} />
-      </motion.div>
-
+    <section id="about" className="section-padding relative overflow-hidden">
       <div className="container-custom relative z-10">
         <motion.div
           ref={ref}
@@ -113,6 +102,11 @@ const About: React.FC = () => {
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center space-y-6">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="w-1 h-8 gradient-bg rounded-full"></div>
+              <span className="text-dynamic font-mono text-sm tracking-wider">ABOUT ME</span>
+              <div className="w-1 h-8 gradient-bg rounded-full"></div>
+            </div>
             <h2 className="text-5xl md:text-7xl font-bold">
               <span className="gradient-text">About</span>
               <br />

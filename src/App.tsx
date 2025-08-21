@@ -5,6 +5,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ThemeToggle from './components/ThemeToggle';
+import DeveloperBackground from './components/DeveloperBackground';
 
 const App: React.FC = () => {
   const [isDark, setIsDark] = useState(true);
@@ -14,6 +15,9 @@ const App: React.FC = () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       setIsDark(savedTheme === 'dark');
+    } else {
+      // Default to dark theme
+      setIsDark(true);
     }
   }, []);
 
@@ -35,7 +39,13 @@ const App: React.FC = () => {
 
   return (
     <div className={`min-h-screen ${isDark ? 'dark' : 'light'}`}>
+      {/* Developer-themed animated background */}
+      <DeveloperBackground />
+      
+      {/* Theme toggle */}
       <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
+      
+      {/* Navigation */}
       <Navigation />
       
       <main>

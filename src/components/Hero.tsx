@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react';
+import { ChevronDown, Mail, Phone, MapPin, Github, Linkedin, Twitter, Download } from 'lucide-react';
 import Avatar3D from './Avatar3D';
 
 const Hero: React.FC = () => {
@@ -8,11 +8,6 @@ const Hero: React.FC = () => {
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    ['rgba(59, 130, 246, 0.1)', 'rgba(139, 92, 246, 0.1)', 'rgba(6, 182, 212, 0.1)']
-  );
 
   const scrollToNext = () => {
     const nextSection = document.getElementById('about');
@@ -22,68 +17,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden scroll-bg">
-      {/* Dynamic background based on scroll */}
-      <motion.div 
-        className="absolute inset-0"
-        style={{ backgroundColor }}
-      />
-
-      {/* Enhanced Background particles */}
-      <motion.div 
-        className="absolute inset-0 overflow-hidden"
-        style={{ y, opacity }}
-      >
-        {Array.from({ length: 100 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 4}s`,
-              animationDuration: `${4 + Math.random() * 2}s`,
-            }}
-          />
-        ))}
-      </motion.div>
-
-      {/* Floating geometric shapes */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        style={{ y, opacity }}
-      >
-        <motion.div
-          className="floating-element"
-          style={{
-            width: '200px',
-            height: '200px',
-            top: '10%',
-            left: '10%',
-            animationDelay: '0s',
-          }}
-        />
-        <motion.div
-          className="floating-element"
-          style={{
-            width: '150px',
-            height: '150px',
-            top: '20%',
-            right: '15%',
-            animationDelay: '2s',
-          }}
-        />
-        <motion.div
-          className="floating-element"
-          style={{
-            width: '100px',
-            height: '100px',
-            bottom: '20%',
-            left: '20%',
-            animationDelay: '4s',
-          }}
-        />
-      </motion.div>
-
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
       <div className="container-custom section-padding relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Content */}
@@ -99,8 +33,12 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="space-y-6"
             >
-              <h2 className="text-dynamic font-mono text-lg">Hello, I'm</h2>
-              <h1 className="text-6xl md:text-8xl font-bold leading-tight">
+              <div className="flex items-center space-x-3">
+                <div className="w-2 h-2 bg-accent-primary rounded-full animate-pulse"></div>
+                <span className="text-dynamic font-mono text-sm tracking-wider">SOFTWARE ENGINEER</span>
+              </div>
+              
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
                 <motion.span 
                   className="gradient-text"
                   initial={{ opacity: 0, y: 50 }}
@@ -119,32 +57,24 @@ const Hero: React.FC = () => {
                   Abu Basith S
                 </motion.span>
               </h1>
-              <motion.h3 
-                className="text-3xl md:text-4xl text-dynamic font-semibold"
+              
+              <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.1, duration: 0.8 }}
+                className="text-xl md:text-2xl text-dynamic leading-relaxed max-w-lg"
               >
-                Software Engineer
-              </motion.h3>
+                Crafting innovative digital solutions with cutting-edge technologies. 
+                Specialized in mobile development, AI integration, and creating seamless 
+                user experiences that make a difference.
+              </motion.p>
             </motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3, duration: 0.8 }}
-              className="text-xl text-dynamic leading-relaxed max-w-lg"
-            >
-              Crafting innovative digital solutions with cutting-edge technologies. 
-              Specialized in mobile development, AI integration, and creating seamless 
-              user experiences that make a difference.
-            </motion.p>
 
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5, duration: 0.8 }}
+              transition={{ delay: 1.3, duration: 0.8 }}
               className="space-y-4"
             >
               <div className="flex items-center space-x-4 text-dynamic group">
@@ -183,7 +113,7 @@ const Hero: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.7, duration: 0.8 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
               className="flex space-x-4"
             >
               <motion.a
@@ -212,19 +142,29 @@ const Hero: React.FC = () => {
               </motion.a>
             </motion.div>
 
-            {/* CTA Button */}
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.9, duration: 0.8 }}
+              transition={{ delay: 1.7, duration: 0.8 }}
+              className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
             >
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 gradient-bg rounded-2xl text-white font-semibold text-xl shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 border border-white/20"
+                className="px-8 py-4 gradient-bg rounded-2xl text-white font-semibold text-lg shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 border border-white/20 flex items-center justify-center space-x-2"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                Get In Touch
+                <span>Get In Touch</span>
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 glass rounded-2xl text-dynamic font-semibold text-lg border border-white/20 hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-2"
+              >
+                <Download className="w-5 h-5" />
+                <span>Download CV</span>
               </motion.button>
             </motion.div>
           </motion.div>
