@@ -16,8 +16,8 @@ const AvatarModel: React.FC = () => {
   const [isClicked, setIsClicked] = useState(false);
   const [clickAnimation, setClickAnimation] = useState(0);
   
-  // Load the 3D model (replace 'avatar.glb' with your actual filename)
-  const { scene, animations } = useGLTF('/avatar.glb');
+  // Load the 3D model
+  const { scene, animations } = useGLTF('/model.glb');
   const { actions } = useAnimations(animations, avatarRef);
   
   useEffect(() => {
