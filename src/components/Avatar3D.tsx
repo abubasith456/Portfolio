@@ -74,12 +74,7 @@ const AvatarModel: React.FC = () => {
       groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouseY, 0.2);
       groupRef.current.rotation.x = 0; // Keep vertical rotation at 0
       
-      // Click reaction - bounce and scale
-      if (clickAnimation > 0) {
-        const bounce = Math.sin(clickAnimation * Math.PI * 2) * 0.2;
-        groupRef.current.position.y += bounce;
-        groupRef.current.scale.setScalar(1 + clickAnimation * 0.2);
-      }
+
     }
   });
 
