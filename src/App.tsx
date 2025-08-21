@@ -10,6 +10,9 @@ const App: React.FC = () => {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
+    // Force scroll to top on page load
+    window.scrollTo(0, 0);
+    
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialDark = saved ? saved === 'dark' : prefersDark;
@@ -34,9 +37,7 @@ const App: React.FC = () => {
       <DeveloperBackground />
       <Navigation isDark={isDark} toggleTheme={toggleTheme} />
       <main>
-        <section id="home">
-          <Hero />
-        </section>
+        <Hero />
         <About />
         <Contact />
       </main>

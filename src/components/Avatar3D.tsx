@@ -66,14 +66,14 @@ const AvatarModel: React.FC = () => {
       // Gentle floating animation
       groupRef.current.position.y = Math.sin(time * 1.2) * 0.1;
       
-      // Mouse tracking - avatar follows cursor
-      const maxRotation = 0.3;
-      const mouseY = Math.max(-maxRotation, Math.min(maxRotation, mousePosition.x * 0.4));
-      const mouseX = Math.max(-maxRotation, Math.min(maxRotation, mousePosition.y * 0.2));
+      // Mouse tracking - avatar follows cursor with more responsive movement
+      const maxRotation = 0.4;
+      const mouseY = Math.max(-maxRotation, Math.min(maxRotation, mousePosition.x * 0.6));
+      const mouseX = Math.max(-maxRotation, Math.min(maxRotation, mousePosition.y * 0.3));
       
-      // Smooth interpolation for rotation
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouseY, 0.1);
-      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, mouseX, 0.1);
+      // Smooth interpolation for rotation - more responsive
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouseY, 0.15);
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, mouseX, 0.15);
       
       // Click reaction - bounce and scale
       if (clickAnimation > 0) {
@@ -86,8 +86,8 @@ const AvatarModel: React.FC = () => {
 
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      {/* 3D Avatar Model - Zoomed */}
-      <group ref={avatarRef} position={[0, 0, 0]} scale={[1.5, 1.5, 1.5]}>
+      {/* 3D Avatar Model - Zoomed and positioned */}
+      <group ref={avatarRef} position={[0, -0.5, 0]} scale={[1.5, 1.5, 1.5]}>
         <primitive object={scene} />
       </group>
     </group>
