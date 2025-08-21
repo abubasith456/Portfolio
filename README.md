@@ -115,7 +115,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 👨‍💻 Author
 
 **Mohamed Abu Basith S**
-- Email: abubasith86@gmail.com
+- Email: mohamedabu.basith@gmail.com
 - Location: Perungudi, Chennai
 
 ## 🙏 Acknowledgments

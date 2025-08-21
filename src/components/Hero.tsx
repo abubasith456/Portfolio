@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
                 >
                   <Mail className="w-5 h-5 text-on-glass" />
                 </motion.div>
-                <span className="text-lg">abubasith86@gmail.com</span>
+                <span className="text-lg">mohamedabu.basith@gmail.com</span>
               </div>
 
               <div className="flex items-center space-x-4 text-dynamic-secondary group">

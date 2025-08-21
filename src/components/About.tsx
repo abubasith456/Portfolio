@@ -88,37 +88,37 @@ const About: React.FC = () => {
           </motion.div>
 
           {/* Experience Timeline */}
-          <motion.div variants={itemVariants} className="space-y-8">
+          <motion.div variants={itemVariants} className="space-y-6 sm:space-y-8">
             <div className="text-center">
-              <h3 className="text-3xl font-bold text-dynamic mb-4">Experience Journey</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-dynamic mb-4">Experience Journey</h3>
               <p className="text-dynamic-secondary">My professional path</p>
             </div>
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {experiences.map((exp, index) => (
                 <motion.div
                   key={index}
                   variants={cardVariants}
                   className="relative"
                 >
-                  <div className="glass rounded-3xl p-8 card-hover">
-                    <div className="flex items-start space-x-6">
-                      <div className="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <div className="glass rounded-3xl p-4 sm:p-6 lg:p-8 card-hover">
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 gradient-bg rounded-2xl flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
                         {exp.icon}
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-4 mb-4">
-                          <h4 className="text-2xl font-bold text-on-card">{exp.title}</h4>
-                          <span className="px-3 py-1 glass text-on-card rounded-full text-sm font-medium">
+                      <div className="flex-1 text-center sm:text-left">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3 sm:mb-4">
+                          <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-on-card leading-tight">{exp.title}</h4>
+                          <span className="px-2 sm:px-3 py-1 glass text-on-card rounded-full text-xs sm:text-sm font-medium self-center sm:self-auto whitespace-nowrap">
                             {exp.period}
                           </span>
                         </div>
-                        <p className="text-dynamic-secondary font-medium mb-4">{exp.company}</p>
-                        <p className="text-dynamic-secondary mb-6 leading-relaxed">{exp.description}</p>
+                        <p className="text-dynamic-secondary font-medium mb-3 sm:mb-4 text-sm sm:text-base">{exp.company}</p>
+                        <p className="text-dynamic-secondary mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">{exp.description}</p>
                         <ul className="space-y-2">
                           {exp.achievements.map((achievement, idx) => (
-                            <li key={idx} className="flex items-start space-x-3">
+                            <li key={idx} className="flex items-start gap-3">
                               <div className="w-2 h-2 gradient-bg rounded-full mt-2 flex-shrink-0" />
-                              <span className="text-dynamic-secondary">{achievement}</span>
+                              <span className="text-dynamic-secondary text-sm leading-relaxed">{achievement}</span>
                             </li>
                           ))}
                         </ul>

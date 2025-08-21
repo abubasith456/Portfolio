@@ -58,6 +58,13 @@
 		transition: background-color 0.3s ease, color 0.3s ease;
 	}
 
+	/* Prevent touch scrolling issues on mobile for 3D components */
+	.avatar-container {
+		touch-action: none;
+		-webkit-overflow-scrolling: touch;
+		overscroll-behavior: none;
+	}
+
 	/* Developer-themed animated background */
 	.dev-background {
 		position: fixed;
