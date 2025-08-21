@@ -104,7 +104,7 @@ const About: React.FC = () => {
           <motion.div variants={itemVariants} className="text-center space-y-6">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <div className="w-1 h-8 gradient-bg rounded-full"></div>
-              <span className="text-dynamic font-mono text-sm tracking-wider">ABOUT ME</span>
+              <span className="text-dynamic-secondary font-mono text-sm tracking-wider">ABOUT ME</span>
               <div className="w-1 h-8 gradient-bg rounded-full"></div>
             </div>
             <h2 className="text-5xl md:text-7xl font-bold">
@@ -112,7 +112,7 @@ const About: React.FC = () => {
               <br />
               <span className="text-dynamic">Me</span>
             </h2>
-            <p className="text-xl text-dynamic max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-dynamic-secondary max-w-3xl mx-auto leading-relaxed">
               Passionate software engineer with 3.5+ years of experience crafting innovative solutions
             </p>
           </motion.div>
@@ -121,7 +121,7 @@ const About: React.FC = () => {
           <motion.div variants={itemVariants} className="space-y-8">
             <div className="text-center">
               <h3 className="text-3xl font-bold text-dynamic mb-4">Technical Expertise</h3>
-              <p className="text-dynamic">Technologies I work with</p>
+              <p className="text-dynamic-secondary">Technologies I work with</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {skills.map((skill, index) => (
@@ -142,10 +142,10 @@ const About: React.FC = () => {
                       borderColor: `${skill.color}30`
                     }}
                   >
-                    <div className="flex justify-center mb-3 text-dynamic group-hover:text-primary-300 transition-colors">
+                    <div className="flex justify-center mb-3 text-on-card group-hover:text-accent-primary transition-colors">
                       {skill.icon}
                     </div>
-                    <h4 className="font-semibold text-dynamic group-hover:text-primary-300 transition-colors">
+                    <h4 className="font-semibold text-on-card group-hover:text-accent-primary transition-colors">
                       {skill.name}
                     </h4>
                   </div>
@@ -158,7 +158,7 @@ const About: React.FC = () => {
           <motion.div variants={itemVariants} className="space-y-8">
             <div className="text-center">
               <h3 className="text-3xl font-bold text-dynamic mb-4">Experience Journey</h3>
-              <p className="text-dynamic">My professional path</p>
+              <p className="text-dynamic-secondary">My professional path</p>
             </div>
             <div className="space-y-8">
               {experiences.map((exp, index) => (
@@ -174,18 +174,18 @@ const About: React.FC = () => {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center space-x-4 mb-4">
-                          <h4 className="text-2xl font-bold text-dynamic">{exp.title}</h4>
-                          <span className="px-3 py-1 glass text-dynamic rounded-full text-sm font-medium">
+                          <h4 className="text-2xl font-bold text-on-card">{exp.title}</h4>
+                          <span className="px-3 py-1 glass text-on-card rounded-full text-sm font-medium">
                             {exp.period}
                           </span>
                         </div>
-                        <p className="text-dynamic font-medium mb-4">{exp.company}</p>
-                        <p className="text-dynamic mb-6 leading-relaxed">{exp.description}</p>
+                        <p className="text-dynamic-secondary font-medium mb-4">{exp.company}</p>
+                        <p className="text-dynamic-secondary mb-6 leading-relaxed">{exp.description}</p>
                         <ul className="space-y-2">
                           {exp.achievements.map((achievement, idx) => (
                             <li key={idx} className="flex items-start space-x-3">
                               <div className="w-2 h-2 gradient-bg rounded-full mt-2 flex-shrink-0" />
-                              <span className="text-dynamic">{achievement}</span>
+                              <span className="text-dynamic-secondary">{achievement}</span>
                             </li>
                           ))}
                         </ul>
@@ -205,13 +205,13 @@ const About: React.FC = () => {
                 <div className="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center">
                   <GraduationCap className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-dynamic">Education</h3>
+                <h3 className="text-2xl font-bold text-on-card">Education</h3>
               </div>
               <div className="space-y-4">
-                <div className="border-l-4 border-l-primary-500 pl-6">
-                  <h4 className="text-xl font-semibold text-dynamic">Bachelor of Computer Application (BCA)</h4>
-                  <p className="text-dynamic font-medium">JAMAL MOHAMED COLLEGE</p>
-                  <p className="text-dynamic opacity-70">2017 - 2020</p>
+                <div className="border-l-4 border-l-accent-primary pl-6">
+                  <h4 className="text-xl font-semibold text-on-card">Bachelor of Computer Application (BCA)</h4>
+                  <p className="text-dynamic-secondary font-medium">JAMAL MOHAMED COLLEGE</p>
+                  <p className="text-dynamic-muted">2017 - 2020</p>
                 </div>
               </div>
             </motion.div>
@@ -224,11 +224,11 @@ const About: React.FC = () => {
                   <div className="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center">
                     <Award className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-dynamic">Certification</h3>
+                  <h3 className="text-2xl font-bold text-on-card">Certification</h3>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-3 h-3 gradient-bg rounded-full"></div>
-                  <span className="text-dynamic text-lg">Ethical Hacking</span>
+                  <span className="text-dynamic-secondary text-lg">Ethical Hacking</span>
                 </div>
               </div>
 
@@ -238,11 +238,11 @@ const About: React.FC = () => {
                   <div className="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center">
                     <Heart className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-dynamic">Hobbies</h3>
+                  <h3 className="text-2xl font-bold text-on-card">Hobbies</h3>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-3 h-3 gradient-bg rounded-full"></div>
-                  <span className="text-dynamic text-lg">Playing Badminton</span>
+                  <span className="text-dynamic-secondary text-lg">Playing Badminton</span>
                 </div>
               </div>
             </motion.div>

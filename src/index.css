@@ -12,7 +12,8 @@
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
     --text-primary: #1e293b;
-    --text-secondary: #64748b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
     --accent-primary: #3b82f6;
     --accent-secondary: #8b5cf6;
     --accent-tertiary: #06b6d4;
@@ -22,6 +23,8 @@
     --card-bg: rgba(255, 255, 255, 0.95);
     --card-border: rgba(0, 0, 0, 0.1);
     --shadow-color: rgba(0, 0, 0, 0.1);
+    --text-on-card: #1e293b;
+    --text-on-glass: #1e293b;
   }
 
   .dark {
@@ -29,7 +32,8 @@
     --bg-primary: #0f172a;
     --bg-secondary: #1e293b;
     --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
     --accent-primary: #3b82f6;
     --accent-secondary: #8b5cf6;
     --accent-tertiary: #06b6d4;
@@ -39,6 +43,8 @@
     --card-bg: rgba(30, 41, 59, 0.9);
     --card-border: rgba(255, 255, 255, 0.1);
     --shadow-color: rgba(0, 0, 0, 0.3);
+    --text-on-card: #f8fafc;
+    --text-on-glass: #f8fafc;
   }
   
   body {
@@ -78,9 +84,9 @@
       /* Terminal lines */
       linear-gradient(90deg, transparent 0%, var(--accent-primary) 50%, transparent 100%),
       /* Binary dots */
-      radial-gradient(circle 2px at 10% 30%, var(--text-secondary) 1px, transparent 1px),
-      radial-gradient(circle 2px at 15% 35%, var(--text-secondary) 1px, transparent 1px),
-      radial-gradient(circle 2px at 90% 70%, var(--text-secondary) 1px, transparent 1px),
+      radial-gradient(circle 2px at 10% 30%, var(--text-muted) 1px, transparent 1px),
+      radial-gradient(circle 2px at 15% 35%, var(--text-muted) 1px, transparent 1px),
+      radial-gradient(circle 2px at 90% 70%, var(--text-muted) 1px, transparent 1px),
       /* Git branches */
       linear-gradient(45deg, transparent 0%, var(--accent-secondary) 50%, transparent 100%);
     background-size: 
@@ -264,7 +270,7 @@
     @apply px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300;
     background: var(--card-bg);
     border-color: var(--card-border);
-    color: var(--text-primary);
+    color: var(--text-on-card);
   }
   
   .section-padding {
@@ -301,9 +307,29 @@
     transform: translateY(0);
   }
 
-  /* Dynamic text colors */
+  /* Dynamic text colors - Improved for better visibility */
   .text-dynamic {
     color: var(--text-primary);
+    transition: color 0.3s ease;
+  }
+
+  .text-dynamic-secondary {
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+  }
+
+  .text-dynamic-muted {
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+  }
+
+  .text-on-card {
+    color: var(--text-on-card);
+    transition: color 0.3s ease;
+  }
+
+  .text-on-glass {
+    color: var(--text-on-glass);
     transition: color 0.3s ease;
   }
 
@@ -365,6 +391,7 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
     line-height: 1.5;
+    color: var(--text-on-card);
   }
 }
 

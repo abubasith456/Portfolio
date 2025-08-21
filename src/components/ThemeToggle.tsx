@@ -13,7 +13,7 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ isDark, toggleTheme }) => {
       onClick={toggleTheme}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed top-6 right-6 z-50 w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 shadow-lg"
+      className="fixed top-6 right-6 z-50 w-12 h-12 rounded-full glass flex items-center justify-center text-dynamic hover:scale-110 transition-all duration-300 shadow-lg border border-white/20"
     >
       <motion.div
         initial={false}
@@ -22,29 +22,10 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ isDark, toggleTheme }) => {
         className="relative"
       >
         {isDark ? (
-          <Sun className="w-6 h-6 text-yellow-400" />
+          <Sun className="w-5 h-5 text-yellow-500" />
         ) : (
-          <Moon className="w-6 h-6 text-blue-600" />
+          <Moon className="w-5 h-5 text-blue-600" />
         )}
-      </motion.div>
-      
-      {/* Toggle switch indicator */}
-      <motion.div
-        className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-1 rounded-full bg-white/20"
-        initial={false}
-        animate={{
-          backgroundColor: isDark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)'
-        }}
-      >
-        <motion.div
-          className="w-3 h-3 rounded-full bg-white shadow-md"
-          initial={false}
-          animate={{
-            x: isDark ? 0 : 20,
-            backgroundColor: isDark ? '#ffffff' : '#1e293b'
-          }}
-          transition={{ duration: 0.3 }}
-        />
       </motion.div>
     </motion.button>
   );

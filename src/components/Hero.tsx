@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
             >
               <div className="flex items-center space-x-3">
                 <div className="w-2 h-2 bg-accent-primary rounded-full animate-pulse"></div>
-                <span className="text-dynamic font-mono text-sm tracking-wider">SOFTWARE ENGINEER</span>
+                <span className="text-dynamic-secondary font-mono text-sm tracking-wider">SOFTWARE ENGINEER</span>
               </div>
               
               <h1 className="text-5xl md:text-7xl font-bold leading-tight">
@@ -62,7 +62,7 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.1, duration: 0.8 }}
-                className="text-xl md:text-2xl text-dynamic leading-relaxed max-w-lg"
+                className="text-xl md:text-2xl text-dynamic-secondary leading-relaxed max-w-lg"
               >
                 Crafting innovative digital solutions with cutting-edge technologies. 
                 Specialized in mobile development, AI integration, and creating seamless 
@@ -77,33 +77,33 @@ const Hero: React.FC = () => {
               transition={{ delay: 1.3, duration: 0.8 }}
               className="space-y-4"
             >
-              <div className="flex items-center space-x-4 text-dynamic group">
+              <div className="flex items-center space-x-4 text-dynamic-secondary group">
                 <motion.div 
                   className="w-12 h-12 rounded-xl glass flex items-center justify-center group-hover:scale-110 transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Mail className="w-5 h-5" />
+                  <Mail className="w-5 h-5 text-on-glass" />
                 </motion.div>
                 <span className="text-lg">abubasith86@gmail.com</span>
               </div>
-              <div className="flex items-center space-x-4 text-dynamic group">
+              <div className="flex items-center space-x-4 text-dynamic-secondary group">
                 <motion.div 
                   className="w-12 h-12 rounded-xl glass flex items-center justify-center group-hover:scale-110 transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Phone className="w-5 h-5" />
+                  <Phone className="w-5 h-5 text-on-glass" />
                 </motion.div>
                 <span className="text-lg">+91 9585909514</span>
               </div>
-              <div className="flex items-center space-x-4 text-dynamic group">
+              <div className="flex items-center space-x-4 text-dynamic-secondary group">
                 <motion.div 
                   className="w-12 h-12 rounded-xl glass flex items-center justify-center group-hover:scale-110 transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <MapPin className="w-5 h-5" />
+                  <MapPin className="w-5 h-5 text-on-glass" />
                 </motion.div>
                 <span className="text-lg">Perungudi, Chennai</span>
               </div>
@@ -120,7 +120,7 @@ const Hero: React.FC = () => {
                 href="#"
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic hover:scale-110 transition-all duration-300"
+                className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
               >
                 <Github className="w-7 h-7" />
               </motion.a>
@@ -128,7 +128,7 @@ const Hero: React.FC = () => {
                 href="#"
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic hover:scale-110 transition-all duration-300"
+                className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
               >
                 <Linkedin className="w-7 h-7" />
               </motion.a>
@@ -136,7 +136,7 @@ const Hero: React.FC = () => {
                 href="#"
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic hover:scale-110 transition-all duration-300"
+                className="w-14 h-14 rounded-2xl glass flex items-center justify-center text-dynamic-secondary hover:text-accent-primary transition-all duration-300"
               >
                 <Twitter className="w-7 h-7" />
               </motion.a>
@@ -209,7 +209,7 @@ const Hero: React.FC = () => {
           onClick={scrollToNext}
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="text-dynamic hover:text-primary-300 transition-colors"
+          className="text-dynamic-secondary hover:text-accent-primary transition-colors"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
