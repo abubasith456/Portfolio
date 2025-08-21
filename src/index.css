@@ -6,50 +6,7 @@
 	html {
   scroll-behavior: smooth;
   scroll-padding-top: 0;
-}
-
-@layer components {
-	/* Modern card styles */
-	.modern-card {
-		background: var(--card-bg);
-		border-radius: 24px;
-		border: 1px solid var(--card-border);
-		box-shadow: 0 4px 20px var(--shadow-color);
-		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-		position: relative;
-		overflow: hidden;
 	}
-	
-	.modern-card::after {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.05) 100%);
-		opacity: 0;
-		transition: opacity 0.3s ease;
-	}
-	
-	.modern-card:hover::after {
-		opacity: 1;
-	}
-	
-	.modern-card:hover {
-		transform: translateY(-8px);
-		box-shadow: 0 20px 40px var(--shadow-color);
-	}
-	
-	/* Modern grid pattern */
-	.modern-grid {
-		background-image: 
-			linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-		background-size: 40px 40px;
-		animation: gridMove 20s linear infinite;
-	}
-}
 	
 	:root {
 		/* Modern Light theme colors */
@@ -767,6 +724,52 @@
 		font-size: 14px;
 		line-height: 1.5;
 		color: var(--text-on-card);
+	}
+	
+	/* Modern card styles */
+	.modern-card {
+		background: var(--card-bg);
+		border-radius: 24px;
+		border: 1px solid var(--card-border);
+		box-shadow: 0 4px 20px var(--shadow-color);
+		transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.modern-card::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.05) 100%);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+	
+	.modern-card:hover::after {
+		opacity: 1;
+	}
+	
+	.modern-card:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 20px 40px var(--shadow-color);
+	}
+	
+	/* Modern grid pattern */
+	.modern-grid {
+		background-image: 
+			linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+		background-size: 40px 40px;
+		animation: gridMove 20s linear infinite;
+	}
+	
+	@keyframes gridMove {
+		0% { transform: translate(0, 0); }
+		100% { transform: translate(40px, 40px); }
 	}
 }
 
