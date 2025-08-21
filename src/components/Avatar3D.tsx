@@ -79,7 +79,7 @@ const AvatarModel: React.FC = () => {
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
       {/* 3D Avatar Model - Centered and properly positioned */}
-      <group ref={avatarRef} position={[0, -2, 0]} scale={[2.5, 2.5, 2.5]}>
+      <group ref={avatarRef} position={[0, -2.3, 0]} scale={[2.5, 2.5, 2.5]}>
         <primitive object={scene} />
       </group>
     </group>
@@ -90,7 +90,7 @@ const Avatar3D: React.FC<AvatarProps> = ({ className }) => {
   return (
     <div className={`w-full h-full ${className}`}>
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 50 }}
+        camera={{ position: [0, 0, 5], fov: 55 }}
         style={{ background: 'transparent' }}
       >
         <ambientLight intensity={0.8} />
