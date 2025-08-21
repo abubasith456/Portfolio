@@ -34,7 +34,7 @@ const Navigation: React.FC<NavigationProps> = ({ isDark, toggleTheme }) => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
           <motion.div whileHover={{ scale: 1.05 }} className="text-2xl md:text-3xl font-bold gradient-text cursor-pointer" onClick={() => scrollToSection('#home')}>
-            Mohamed
+            Mohamed's Portfolio
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-8">

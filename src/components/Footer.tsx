@@ -170,9 +170,6 @@ const Footer: React.FC = () => {
             className="text-dynamic"
           >
             <p>&copy; {currentYear} Mohamed Abu Basith S. All rights reserved.</p>
-            <p className="text-sm mt-2 opacity-70">
-              Crafted with ❤️ using React, TypeScript, and Three.js
-            </p>
           </motion.div>
         </motion.div>
       </div>
