@@ -1,13 +1,10 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Code, GraduationCap, Award, Heart, Rocket, Globe, Smartphone, Database, GitBranch, Brain, Cpu } from 'lucide-react';
 
 const About: React.FC = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
 
   const skills = [
     { name: 'Android', icon: <Smartphone className="w-8 h-8" />, color: '#3DDC84' },
