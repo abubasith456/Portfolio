@@ -20,6 +20,28 @@ const AvatarModel: React.FC = () => {
   const { scene, animations } = useGLTF(`${process.env.PUBLIC_URL}/model.glb`);
   const { actions } = useAnimations(animations, avatarRef);
   
+  // Fix model orientation to look straight ahead
+  useEffect(() => {
+    if (scene) {
+      // Debug: Log all bones in the model
+      console.log('Model bones:');
+      scene.traverse((child) => {
+        if (child.isBone) {
+          console.log('Bone:', child.name);
+        }
+      });
+      
+      // Find and rotate head bone to look straight ahead
+      scene.traverse((child) => {
+        if (child.isBone && (child.name.toLowerCase().includes('head') || child.name.toLowerCase().includes('neck'))) {
+          console.log('Rotating bone:', child.name);
+          child.rotation.x = -0.3; // Tilt head down to look straight
+        }
+      });
+      scene.updateMatrixWorld(true);
+    }
+  }, [scene]);
+  
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       // Normalize mouse position to -1 to 1 range
@@ -80,7 +102,7 @@ const AvatarModel: React.FC = () => {
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
       {/* 3D Avatar Model - Centered and properly positioned */}
-      <group ref={avatarRef} position={[0, -2.3, 0]} scale={[2.5, 2.5, 2.5]} rotation={[-0.1, 0, 0]}>
+      <group ref={avatarRef} position={[0, -2.3, 0]} scale={[2.5, 2.5, 2.5]}>
         <primitive object={scene} />
       </group>
     </group>
