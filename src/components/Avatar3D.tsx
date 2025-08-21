@@ -63,32 +63,39 @@ const AvatarModel: React.FC = () => {
     }
     
     if (groupRef.current) {
-      // Gentle floating animation
-      groupRef.current.position.y = Math.sin(time * 1.2) * 0.1;
+      // Get scroll progress
+      const scrollY = window.scrollY;
+      const maxScroll = window.innerHeight * 0.8; // Scroll range for animation
+      const scrollProgress = Math.min(scrollY / maxScroll, 1);
+      
+      // Avatar moves up and gets smaller as you scroll
+      const startY = 0; // Initial position
+      const endY = -2; // Final position (top)
+      const currentY = startY + (endY - startY) * scrollProgress;
+      
+      // Avatar scales down as it moves up
+      const startScale = 2; // Initial scale
+      const endScale = 0.8; // Final scale (smaller)
+      const currentScale = startScale + (endScale - startScale) * scrollProgress;
+      
+      // Apply position and scale
+      groupRef.current.position.y = currentY;
+      groupRef.current.scale.setScalar(currentScale);
       
       // Mouse tracking - avatar follows cursor horizontally only
       const maxRotation = 0.5;
       const mouseY = Math.max(-maxRotation, Math.min(maxRotation, mousePosition.x * 0.8));
       
-      // Scroll-based rotation animation
-      const scrollY = window.scrollY;
-      const scrollRotation = (scrollY / window.innerHeight) * Math.PI * 2; // Full rotation based on scroll
-      
-      // Combine mouse tracking with scroll rotation
-      const targetRotation = mouseY + scrollRotation;
-      
       // Smooth interpolation for horizontal rotation only
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetRotation, 0.2);
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouseY, 0.2);
       groupRef.current.rotation.x = 0; // Keep vertical rotation at 0
-      
- 
     }
   });
 
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      {/* 3D Avatar Model - Centered and properly positioned */}
-      <group ref={avatarRef} position={[0, -2, 0]} scale={[2, 2, 2]}>
+      {/* 3D Avatar Model - Will be animated by scroll */}
+      <group ref={avatarRef} position={[0, 0, 0]} scale={[2, 2, 2]}>
         <primitive object={scene} />
       </group>
     </group>
