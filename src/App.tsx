@@ -10,8 +10,10 @@ const App: React.FC = () => {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    // Force scroll to top on page load
+    // Force scroll to top on page load with multiple attempts
     window.scrollTo(0, 0);
+    setTimeout(() => window.scrollTo(0, 0), 100);
+    setTimeout(() => window.scrollTo(0, 0), 500);
     
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
