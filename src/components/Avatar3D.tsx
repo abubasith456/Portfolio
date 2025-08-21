@@ -87,10 +87,10 @@ const AvatarModel: React.FC = () => {
 
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      {/* Main avatar plane with texture */}
+      {/* Main avatar plane with texture - zoomed */}
       <Plane 
         ref={planeRef}
-        args={[2, 2]} 
+        args={[2.5, 2.5]} 
         position={[0, 0, 0]}
         rotation={[Math.PI, 0, 0]}
       >
