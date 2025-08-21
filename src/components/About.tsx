@@ -1,7 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code, GraduationCap, Award, Heart } from 'lucide-react';
+import { Code, GraduationCap, Award, Heart, Zap, Rocket, Brain, Globe } from 'lucide-react';
 
 const About: React.FC = () => {
   const [ref, inView] = useInView({
@@ -9,9 +9,49 @@ const About: React.FC = () => {
     threshold: 0.1,
   });
 
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
+
   const skills = [
-    'Android', 'Flutter', 'React Native', 'Node.js', 'Firebase', 'Git',
-    'IDE - Android Studio, Visual Studio', 'RAG (Basics)', 'Python', 'React'
+    { name: 'Android', icon: '📱', color: '#3DDC84' },
+    { name: 'Flutter', icon: '🦋', color: '#02569B' },
+    { name: 'React Native', icon: '⚛️', color: '#61DAFB' },
+    { name: 'Node.js', icon: '🟢', color: '#339933' },
+    { name: 'Firebase', icon: '🔥', color: '#FFCA28' },
+    { name: 'Git', icon: '📝', color: '#F05032' },
+    { name: 'Python', icon: '🐍', color: '#3776AB' },
+    { name: 'React', icon: '⚛️', color: '#61DAFB' },
+    { name: 'AI/ML', icon: '🤖', color: '#FF6B6B' },
+    { name: 'RAG', icon: '🧠', color: '#4ECDC4' }
+  ];
+
+  const experiences = [
+    {
+      title: "Android Engineer / AI Product Developer",
+      company: "Current Role",
+      period: "Jan 2022 - Present",
+      description: "Leading development of Android, Flutter, and React Native applications with focus on AI integration.",
+      achievements: [
+        "Designed and maintained Android and Flutter applications",
+        "Integrated Android functionalities in React Native wrapper SDK",
+        "Currently working on Knowledgebase and Convo AI solutions",
+        "Worked on RDIA Saudi project with Python backend and React frontend"
+      ],
+      icon: <Rocket className="w-6 h-6" />
+    },
+    {
+      title: "Software Developer Intern",
+      company: "Previous Experience",
+      period: "July 2021 - December 2021",
+      description: "Developed mobile applications and worked with backend APIs and Firebase integration.",
+      achievements: [
+        "Designed applications for mobile phones and tablets",
+        "Worked with backend API database response server",
+        "Created applications with Firebase authentication and real-time database"
+      ],
+      icon: <Code className="w-6 h-6" />
+    }
   ];
 
   const containerVariants = {
@@ -20,162 +60,227 @@ const About: React.FC = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 50 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    },
   };
 
   return (
-    <section id="about" className="section-padding relative">
-      <div className="container-custom">
+    <section id="about" className="section-padding relative overflow-hidden">
+      {/* Animated background elements */}
+      <motion.div
+        style={{ y, opacity }}
+        className="absolute inset-0 pointer-events-none"
+      >
+        <div className="absolute top-20 left-10 w-20 h-20 bg-primary-500/10 rounded-full blur-xl" />
+        <div className="absolute top-40 right-20 w-32 h-32 bg-purple-500/10 rounded-full blur-xl" />
+        <div className="absolute bottom-20 left-1/4 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl" />
+        <div className="absolute bottom-40 right-1/3 w-16 h-16 bg-pink-500/10 rounded-full blur-xl" />
+      </motion.div>
+
+      <div className="container-custom relative z-10">
         <motion.div
           ref={ref}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={containerVariants}
-          className="space-y-16"
+          className="space-y-20"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text">
-              About Me
+          <motion.div variants={itemVariants} className="text-center space-y-6">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={inView ? { scale: 1 } : { scale: 0 }}
+              transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+              className="inline-block"
+            >
+              <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary-500 to-purple-600 rounded-full flex items-center justify-center mb-6">
+                <Brain className="w-10 h-10 text-white" />
+              </div>
+            </motion.div>
+            <h2 className="text-5xl md:text-7xl font-bold">
+              <span className="gradient-text">About</span>
+              <br />
+              <span className="text-white">Me</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Passionate software engineer with expertise in mobile development and AI applications
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Passionate software engineer crafting innovative solutions with cutting-edge technologies
             </p>
           </motion.div>
 
-          {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Left Column - Professional Summary */}
-            <motion.div variants={itemVariants} className="space-y-6">
-              <div className="glass rounded-2xl p-8 card-hover">
-                <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
-                  <Code className="w-6 h-6 mr-3 text-primary-400" />
-                  Professional Summary
-                </h3>
-                <p className="text-gray-300 leading-relaxed">
-                  Software developer with 3.5 years of experience in handling Android, Flutter, 
-                  React & React Native, and AI Applications, with the ability to handle multiple 
-                  projects simultaneously with a high degree of accuracy.
-                </p>
-              </div>
-
-              {/* Education */}
-              <div className="glass rounded-2xl p-8 card-hover">
-                <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
-                  <GraduationCap className="w-6 h-6 mr-3 text-primary-400" />
-                  Education
-                </h3>
-                <div className="space-y-3">
-                  <div className="border-l-4 border-primary-500 pl-4">
-                    <h4 className="text-lg font-semibold text-white">
-                      Bachelor of Computer Application (BCA)
-                    </h4>
-                    <p className="text-primary-300">JAMAL MOHAMED COLLEGE</p>
-                    <p className="text-gray-400">2017-2020</p>
-                  </div>
+          {/* Professional Summary */}
+          <motion.div variants={itemVariants} className="relative">
+            <div className="glass rounded-3xl p-12 card-hover border border-white/10">
+              <div className="flex items-center space-x-4 mb-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-cyan-500 rounded-2xl flex items-center justify-center">
+                  <Zap className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold text-white">Professional Summary</h3>
+                  <p className="text-primary-300">3.5+ Years of Excellence</p>
                 </div>
               </div>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                Software developer with 3.5 years of experience in handling Android, Flutter, 
+                React & React Native, and AI Applications. I excel at managing multiple projects 
+                simultaneously with a high degree of accuracy and attention to detail.
+              </p>
+            </div>
+          </motion.div>
 
-              {/* Certification */}
-              <div className="glass rounded-2xl p-8 card-hover">
-                <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
-                  <Award className="w-6 h-6 mr-3 text-primary-400" />
-                  Certification
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-primary-400 rounded-full"></div>
-                    <span className="text-gray-300">Ethical Hacking</span>
+          {/* Skills Grid */}
+          <motion.div variants={itemVariants} className="space-y-8">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-white mb-4">Technical Expertise</h3>
+              <p className="text-gray-300">Technologies I work with</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  variants={cardVariants}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -10,
+                    transition: { duration: 0.2 }
+                  }}
+                  className="group relative"
+                >
+                  <div 
+                    className="glass rounded-2xl p-6 text-center card-hover border border-white/10"
+                    style={{ 
+                      background: `linear-gradient(135deg, ${skill.color}20, ${skill.color}10)`,
+                      borderColor: `${skill.color}30`
+                    }}
+                  >
+                    <div className="text-4xl mb-3">{skill.icon}</div>
+                    <h4 className="font-semibold text-white group-hover:text-primary-300 transition-colors">
+                      {skill.name}
+                    </h4>
                   </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Experience Timeline */}
+          <motion.div variants={itemVariants} className="space-y-8">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-white mb-4">Experience Journey</h3>
+              <p className="text-gray-300">My professional path</p>
+            </div>
+            <div className="space-y-8">
+              {experiences.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  variants={cardVariants}
+                  className="relative"
+                >
+                  <div className="glass rounded-3xl p-8 card-hover border border-white/10">
+                    <div className="flex items-start space-x-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-purple-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                        {exp.icon}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-4 mb-4">
+                          <h4 className="text-2xl font-bold text-white">{exp.title}</h4>
+                          <span className="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-sm font-medium">
+                            {exp.period}
+                          </span>
+                        </div>
+                        <p className="text-primary-300 font-medium mb-4">{exp.company}</p>
+                        <p className="text-gray-300 mb-6 leading-relaxed">{exp.description}</p>
+                        <ul className="space-y-2">
+                          {exp.achievements.map((achievement, idx) => (
+                            <li key={idx} className="flex items-start space-x-3">
+                              <div className="w-2 h-2 bg-primary-400 rounded-full mt-2 flex-shrink-0" />
+                              <span className="text-gray-300">{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Education & Certifications */}
+          <motion.div variants={itemVariants} className="grid lg:grid-cols-2 gap-8">
+            {/* Education */}
+            <motion.div variants={cardVariants} className="glass rounded-3xl p-8 card-hover border border-white/10">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
+                  <GraduationCap className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white">Education</h3>
+              </div>
+              <div className="space-y-4">
+                <div className="border-l-4 border-green-500 pl-6">
+                  <h4 className="text-xl font-semibold text-white">Bachelor of Computer Application (BCA)</h4>
+                  <p className="text-green-400 font-medium">JAMAL MOHAMED COLLEGE</p>
+                  <p className="text-gray-400">2017 - 2020</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Certifications & Hobbies */}
+            <motion.div variants={cardVariants} className="space-y-6">
+              {/* Certification */}
+              <div className="glass rounded-3xl p-8 card-hover border border-white/10">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center">
+                    <Award className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Certification</h3>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                  <span className="text-gray-300 text-lg">Ethical Hacking</span>
                 </div>
               </div>
 
               {/* Hobbies */}
-              <div className="glass rounded-2xl p-8 card-hover">
-                <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
-                  <Heart className="w-6 h-6 mr-3 text-primary-400" />
-                  Hobbies
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-primary-400 rounded-full"></div>
-                    <span className="text-gray-300">Playing Badminton</span>
+              <div className="glass rounded-3xl p-8 card-hover border border-white/10">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center">
+                    <Heart className="w-6 h-6 text-white" />
                   </div>
+                  <h3 className="text-2xl font-bold text-white">Hobbies</h3>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-3 h-3 bg-pink-400 rounded-full"></div>
+                  <span className="text-gray-300 text-lg">Playing Badminton</span>
                 </div>
               </div>
             </motion.div>
-
-            {/* Right Column - Skills */}
-            <motion.div variants={itemVariants} className="space-y-6">
-              <div className="glass rounded-2xl p-8 card-hover">
-                <h3 className="text-2xl font-bold text-white mb-6">
-                  Technical Skills
-                </h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {skills.map((skill, index) => (
-                    <motion.div
-                      key={skill}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="skill-badge text-center"
-                    >
-                      {skill}
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Experience Timeline */}
-              <div className="glass rounded-2xl p-8 card-hover">
-                <h3 className="text-2xl font-bold text-white mb-6">
-                  Experience
-                </h3>
-                <div className="space-y-6">
-                  {/* Current Role */}
-                  <div className="relative pl-8 border-l-4 border-primary-500">
-                    <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-500 rounded-full"></div>
-                    <div className="space-y-2">
-                      <h4 className="text-lg font-semibold text-white">
-                        Android Engineer / AI Product Developer
-                      </h4>
-                      <p className="text-primary-300 text-sm">Jan 2022 -- Current</p>
-                      <ul className="text-gray-300 text-sm space-y-1 ml-4">
-                        <li>• Design, develop and maintenance of Android and flutter applications</li>
-                        <li>• Integrated Android functionalities in react native wrapper SDK</li>
-                        <li>• Worked as software developer on Android, Flutter and React Native projects</li>
-                        <li>• Moved to product team that is fully based on AI</li>
-                        <li>• Currently working on Knowledgebase and Convo AI solutions</li>
-                        <li>• Worked on RDIA Saudi project with both backend Python and frontend React development</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Internship */}
-                  <div className="relative pl-8 border-l-4 border-primary-500">
-                    <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-500 rounded-full"></div>
-                    <div className="space-y-2">
-                      <h4 className="text-lg font-semibold text-white">
-                        Internship
-                      </h4>
-                      <p className="text-primary-300 text-sm">July 2021 -- December 2021</p>
-                      <ul className="text-gray-300 text-sm space-y-1 ml-4">
-                        <li>• Designed and developed applications for Mobile phones and tablets</li>
-                        <li>• Worked on with backend API database response server</li>
-                        <li>• Created application with Firebase authentication and Real-time database of Firebase</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
