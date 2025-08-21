@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ThemeToggle from './components/ThemeToggle';
 import DeveloperBackground from './components/DeveloperBackground';
 
 const App: React.FC = () => {
@@ -43,31 +42,13 @@ const App: React.FC = () => {
     setIsDark(!isDark);
   };
 
-  // Fallback theme toggle for debugging
-  const fallbackToggle = () => {
-    console.log('Fallback toggle clicked');
-    setIsDark(!isDark);
-  };
-
   return (
     <div className={`min-h-screen ${isDark ? 'dark' : 'light'}`}>
       {/* Developer-themed animated background */}
       <DeveloperBackground />
       
-      {/* Theme toggle */}
-      <ThemeToggle isDark={isDark} toggleTheme={toggleTheme} />
-      
-      {/* Fallback theme toggle for debugging */}
-      <button
-        onClick={fallbackToggle}
-        className="fixed top-4 left-4 z-[9999] bg-red-500 text-white px-3 py-1 rounded text-sm"
-        style={{ touchAction: 'manipulation' }}
-      >
-        {isDark ? 'Light' : 'Dark'}
-      </button>
-      
-      {/* Navigation */}
-      <Navigation />
+      {/* Navigation with theme toggle */}
+      <Navigation isDark={isDark} toggleTheme={toggleTheme} />
       
       <main>
         <section id="home">

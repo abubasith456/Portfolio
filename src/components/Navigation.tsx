@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 
-const Navigation: React.FC = () => {
+interface NavigationProps {
+  isDark: boolean;
+  toggleTheme: () => void;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ isDark, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -27,6 +32,13 @@ const Navigation: React.FC = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsOpen(false);
+  };
+
+  const handleThemeToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Navigation theme toggle clicked');
+    toggleTheme();
   };
 
   return (
@@ -56,7 +68,7 @@ const Navigation: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection(item.href)}
-                className="text-dynamic hover:text-primary-400 transition-colors duration-300 font-medium"
+                className="text-dynamic hover:text-accent-primary transition-colors duration-300 font-medium"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -64,6 +76,21 @@ const Navigation: React.FC = () => {
                 {item.name}
               </motion.button>
             ))}
+            
+            {/* Theme Toggle in Navigation */}
+            <motion.button
+              onClick={handleThemeToggle}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-dynamic hover:bg-white/30 transition-all duration-300"
+              title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+            >
+              {isDark ? (
+                <Sun className="w-5 h-5 text-yellow-400" />
+              ) : (
+                <Moon className="w-5 h-5 text-blue-600" />
+              )}
+            </motion.button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -93,7 +120,7 @@ const Navigation: React.FC = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left text-dynamic hover:text-primary-400 transition-colors duration-300 font-medium py-2"
+                    className="block w-full text-left text-dynamic hover:text-accent-primary transition-colors duration-300 font-medium py-2"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
@@ -101,6 +128,29 @@ const Navigation: React.FC = () => {
                     {item.name}
                   </motion.button>
                 ))}
+                
+                {/* Theme Toggle in Mobile Menu */}
+                <motion.button
+                  onClick={handleThemeToggle}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center space-x-3 text-dynamic hover:text-accent-primary transition-colors duration-300 font-medium py-2"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navItems.length * 0.1 }}
+                >
+                  {isDark ? (
+                    <>
+                      <Sun className="w-5 h-5 text-yellow-400" />
+                      <span>Switch to Light Mode</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="w-5 h-5 text-blue-600" />
+                      <span>Switch to Dark Mode</span>
+                    </>
+                  )}
+                </motion.button>
               </div>
             </motion.div>
           )}
